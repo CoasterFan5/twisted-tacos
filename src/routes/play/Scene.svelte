@@ -4,6 +4,7 @@
 	import Player from './Player.svelte';
 	import { AutoColliders } from '@threlte/rapier';
 	import CursorCapture from '$lib/components/CursorCapture.svelte';
+	import Plate from '$lib/components/Plate.svelte';
 </script>
 
 <T.PerspectiveCamera
@@ -14,8 +15,10 @@
 	}}
 />
 
-<T.DirectionalLight position={[0, 0, 0]} />
+<T.DirectionalLight position={[0, 5, 10]} color="white" intensity={3} />
+<T.AmbientLight color="white" intensity={1} />
 
+<Plate />
 <Floor />
 <T.Group position={[0, 0, 0]}>
 	<AutoColliders shape="cuboid">

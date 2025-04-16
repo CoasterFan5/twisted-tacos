@@ -11,7 +11,6 @@
 			const wp = g.getWorldPosition(new Vector3());
 			playerPos.x = wp.x;
 			playerPos.z = wp.z;
-			console.log($state.snapshot(playerPos), Date.now());
 			g.lookAt(new Vector3(playerPos.x, playerPos.y, playerPos.z).add(playerSpeed.clone()));
 		}
 	});
