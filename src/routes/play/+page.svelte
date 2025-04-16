@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Canvas } from '@threlte/core';
+	import { Canvas, T } from '@threlte/core';
 	import Scene from './Scene.svelte';
 	import { World } from '@threlte/rapier';
 	import { keyTick, registerActiveKey, removeActiveKey } from './keyManager';
@@ -36,8 +36,10 @@
 
 <svelte:body onkeydown={registerActiveKey} onkeyup={removeActiveKey} />
 
-<Canvas>
+<Canvas autoRender={true} renderMode="always">
 	<World>
-		<Scene />
+		<T.BoxHelper>
+			<Scene />
+		</T.BoxHelper>
 	</World>
 </Canvas>

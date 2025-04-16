@@ -18,3 +18,8 @@ export const realPlayerSpeed = $state({
 	y: 0,
 	z: 0
 });
+
+export const cursorPos = {
+	x: 0,
+	z: 0
+};
