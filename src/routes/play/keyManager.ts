@@ -1,7 +1,7 @@
-import { playerPos } from './sharedState.svelte';
+import { newSpeed } from './sharedState.svelte';
 
 const activeKeys: { [key: string]: boolean } = {};
-const playerSpeed = 3; // m/s
+const speedFactor = 10;
 
 export const registerActiveKey = (e: KeyboardEvent) => {
 	activeKeys[e.key] = true;
@@ -23,15 +23,15 @@ const keyEvents: {
 	[key: KeyboardEvent['key']]: (deltaTime: number) => void;
 } = {
 	w: (ts) => {
-		playerPos.x += playerSpeed * ts;
+		newSpeed.x += speedFactor * ts;
 	},
 	s: (ts) => {
-		playerPos.x -= playerSpeed * ts;
+		newSpeed.x -= speedFactor * ts;
 	},
 	a: (ts) => {
-		playerPos.z -= playerSpeed * ts;
+		newSpeed.z -= speedFactor * ts;
 	},
 	d: (ts) => {
-		playerPos.z += playerSpeed * ts;
+		newSpeed.z += speedFactor * ts;
 	}
 };

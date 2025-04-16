@@ -1,7 +1,8 @@
 <script lang="ts">
 	import { T } from '@threlte/core';
-	import { playerPos } from './sharedState.svelte';
 	import Floor from '$lib/components/Floor.svelte';
+	import Player from './Player.svelte';
+	import { AutoColliders } from '@threlte/rapier';
 </script>
 
 <T.PerspectiveCamera
@@ -15,8 +16,13 @@
 <T.DirectionalLight position={[0, 0, 0]} />
 
 <Floor />
+<T.Group position={[5, 0, 0]}>
+	<AutoColliders shape="cuboid">
+		<T.Mesh>
+			<T.BoxGeometry args={[0.1, 1, 10]} />
+			<T.MeshBasicMaterial color="blue" />
+		</T.Mesh>
+	</AutoColliders>
+</T.Group>
 
-<T.Mesh position={[playerPos.x, 0.5, playerPos.z]}>
-	<T.BoxGeometry args={[1, 1, 1]} />
-	<T.MeshBasicMaterial color="red" />
-</T.Mesh>
+<Player />
