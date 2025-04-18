@@ -12,6 +12,7 @@
 	let paused = false;
 
 	const {
+		id
 	}: {
 		id: string;
 	} = $props();
