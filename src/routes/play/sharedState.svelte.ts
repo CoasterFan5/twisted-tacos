@@ -58,6 +58,10 @@ export const kitchen: {
 		cC: {
 			holding: 'plate',
 			position: new Vector2(4, 1)
+		},
+		cD: {
+			holding: 'air',
+			position: new Vector2(4, -1)
 		}
 	},
 	stoves: {
