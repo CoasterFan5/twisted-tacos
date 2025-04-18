@@ -5,7 +5,6 @@
 	import Fridge from './Fridge.svelte';
 	import { kitchen } from '../../routes/play/sharedState.svelte';
 	import Counter from './Counter.svelte';
-	import Meat from './holdables/Meat.svelte';
 
 	const tiles: {
 		id: number;
@@ -29,10 +28,6 @@
 	console.log(tiles);
 </script>
 
-<T.Group position={[0, 1, 0]}>
-	<Meat />
-</T.Group>
-
 <T.Group position={[0, -0.5, 0]}>
 	{#each tiles as row (row)}
 		{#each row as t (t.id)}
@@ -52,6 +47,12 @@
 			{@const data = kitchen.counters[o]}
 			<T.Group position={[data.position.x, 0, data.position.y]}>
 				<Counter id={o} />
+			</T.Group>
+		{/each}
+		{#each Object.keys(kitchen.stoves) as o (o)}
+			{@const data = kitchen.stoves[o]}
+			<T.Group position={[data.position.x, 0, data.position.y]}>
+				<Stove id={o} />
 			</T.Group>
 		{/each}
 	</T.Group>

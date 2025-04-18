@@ -7,10 +7,12 @@ type VoidFunction = () => void;
 const interactListeners: Record<string, VoidFunction> = {};
 export const registerInteractListener = (key: string, callback: () => void) => {
 	interactListeners[key] = callback;
+	console.info(interactListeners);
 };
 
 export const unregisterInteractListener = (key: string) => {
 	delete interactListeners[key];
+	console.info(interactListeners);
 };
 
 export const registerActiveKey = (e: KeyboardEvent) => {

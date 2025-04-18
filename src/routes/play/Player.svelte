@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { T, useTask } from '@threlte/core';
 	import { playerPos, playerSpeed, realPlayerSpeed } from './sharedState.svelte';
-	import { AutoColliders, Collider, CollisionGroups, RigidBody } from '@threlte/rapier';
+	import { Collider, RigidBody } from '@threlte/rapier';
 	import { Group, Vector3, type Object3DEventMap } from 'three';
 	import { GLTF } from '@threlte/extras';
 

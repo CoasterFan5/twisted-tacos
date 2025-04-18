@@ -44,7 +44,7 @@ export const kitchen: {
 	fridges: Record<Id, FridgeData>;
 	counters: Record<Id, CounterData>;
 	stoves: Record<Id, StovesData>;
-} = {
+} = $state({
 	fridges: {
 		fA: { holding: 'meat', position: new Vector2(4, 4) }
 	},
@@ -56,10 +56,19 @@ export const kitchen: {
 		cB: {
 			holding: 'air',
 			position: new Vector2(4, 2)
+		},
+		cC: {
+			holding: 'plate',
+			position: new Vector2(4, 1)
 		}
 	},
-	stoves: {}
-};
+	stoves: {
+		sA: {
+			holding: 'air',
+			position: new Vector2(4, 0)
+		}
+	}
+});
 
 export const playerData: {
 	carrying: Carryable;
