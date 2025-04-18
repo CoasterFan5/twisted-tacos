@@ -3,6 +3,16 @@ import { newSpeed } from './sharedState.svelte';
 const activeKeys: { [key: string]: boolean } = {};
 const speedFactor = 10;
 
+type VoidFunction = () => void;
+const interactListeners: Record<string, VoidFunction> = {};
+export const registerInteractListener = (key: string, callback: () => void) => {
+	interactListeners[key] = callback;
+};
+
+export const unregisterInteractListener = (key: string) => {
+	delete interactListeners[key];
+};
+
 export const registerActiveKey = (e: KeyboardEvent) => {
 	activeKeys[e.key] = true;
 };
@@ -33,5 +43,10 @@ const keyEvents: {
 	},
 	d: (ts) => {
 		newSpeed.z += speedFactor * ts;
+	},
+	e: () => {
+		for (const i in interactListeners) {
+			interactListeners[i]();
+		}
 	}
 };

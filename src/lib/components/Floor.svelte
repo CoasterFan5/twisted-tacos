@@ -1,12 +1,17 @@
 <script lang="ts">
 	import { T } from '@threlte/core';
 	import FloorTile from './FloorTile.svelte';
+	import Stove from './Stove.svelte';
+	import Fridge from './Fridge.svelte';
+	import { kitchen } from '../../routes/play/sharedState.svelte';
+	import Counter from './Counter.svelte';
+	import Meat from './holdables/Meat.svelte';
 
 	const tiles: {
 		id: number;
 		x: number;
 		z: number;
-		item: undefined;
+		item: undefined | 'stove' | 'fridge';
 	}[][] = Array.from({ length: 10 }, (_, x) =>
 		Array.from({ length: 10 }, (_, z) => {
 			return {
@@ -18,15 +23,36 @@
 		})
 	);
 
+	tiles[5][0].item = 'stove';
+	tiles[9][5].item = 'fridge';
+
 	console.log(tiles);
 </script>
+
+<T.Group position={[0, 1, 0]}>
+	<Meat />
+</T.Group>
 
 <T.Group position={[0, -0.5, 0]}>
 	{#each tiles as row (row)}
 		{#each row as t (t.id)}
-			<T.Group position={[t.x - 5 + 0.5, 0, t.z - 5 + 0.5]}>
+			<T.Group position={[t.x - 5, 0, t.z - 5]}>
 				<FloorTile />
 			</T.Group>
 		{/each}
 	{/each}
+	<T.Group position={[0, 0.5, 0]}>
+		{#each Object.keys(kitchen.fridges) as o (o)}
+			{@const data = kitchen.fridges[o]}
+			<T.Group position={[data.position.x, 0, data.position.y]}>
+				<Fridge id={o} />
+			</T.Group>
+		{/each}
+		{#each Object.keys(kitchen.counters) as o (o)}
+			{@const data = kitchen.counters[o]}
+			<T.Group position={[data.position.x, 0, data.position.y]}>
+				<Counter id={o} />
+			</T.Group>
+		{/each}
+	</T.Group>
 </T.Group>

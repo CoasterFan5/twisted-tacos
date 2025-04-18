@@ -4,7 +4,7 @@
 	import { World } from '@threlte/rapier';
 	import { keyTick, registerActiveKey, removeActiveKey } from './keyManager';
 	import { onMount } from 'svelte';
-	import { newSpeed, playerSpeed, realPlayerSpeed } from './sharedState.svelte';
+	import { newSpeed, playerData, playerSpeed, realPlayerSpeed } from './sharedState.svelte';
 
 	let lastTick: DOMHighResTimeStamp | undefined = undefined;
 
@@ -36,6 +36,10 @@
 
 <svelte:body onkeydown={registerActiveKey} onkeyup={removeActiveKey} />
 
+<span class="a">
+	Carrying {playerData.carrying}
+</span>
+
 <Canvas autoRender={true} renderMode="always">
 	<World>
 		<T.BoxHelper>
@@ -43,3 +47,13 @@
 		</T.BoxHelper>
 	</World>
 </Canvas>
+
+<style>
+	.a {
+		position: fixed;
+		padding: 1rem;
+		background: rgba(0, 0, 0, 0.5);
+		top: 0px;
+		right: 0px;
+	}
+</style>

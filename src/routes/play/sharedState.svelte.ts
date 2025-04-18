@@ -1,5 +1,6 @@
-import { Vector3 } from 'three';
-
+import { Vector2, Vector3 } from 'three';
+import type { Carryable } from '$lib/types/Carryable';
+import type { Interactable } from '$lib/types/Interactable';
 export const cameraPos = $state({
 	x: 0,
 	y: 0
@@ -23,3 +24,47 @@ export const cursorPos = {
 	x: 0,
 	z: 0
 };
+
+type GenericInteractable = {
+	holding: Carryable;
+	position: Vector2;
+};
+
+type FridgeData = {} & GenericInteractable;
+
+type CounterData = {} & GenericInteractable;
+
+type StovesData = {
+	cookProgress: 0;
+} & GenericInteractable;
+
+type Id = string;
+
+export const kitchen: {
+	fridges: Record<Id, FridgeData>;
+	counters: Record<Id, CounterData>;
+	stoves: Record<Id, StovesData>;
+} = {
+	fridges: {
+		fA: { holding: 'meat', position: new Vector2(4, 4) }
+	},
+	counters: {
+		cA: {
+			holding: 'air',
+			position: new Vector2(4, 3)
+		},
+		cB: {
+			holding: 'air',
+			position: new Vector2(4, 2)
+		}
+	},
+	stoves: {}
+};
+
+export const playerData: {
+	carrying: Carryable;
+	interactableType: Interactable;
+} = $state({
+	carrying: 'air',
+	interactableType: 'air'
+});
