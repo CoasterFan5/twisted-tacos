@@ -16,6 +16,7 @@
 		id: string;
 	} = $props();
 
+	let lastEvent: DOMHighResTimeStamp = 0;
 	let cookingProgress = 0; // When this gets to one we are done
 	let holding: Carryable = $derived(kitchen.stoves[id].holding);
 	let HoldingModel = $derived(holdableModels[kitchen.stoves[id].holding]);
@@ -31,6 +32,11 @@
 	});
 
 	const getPlaceItem = () => {
+		const n = performance.now();
+		if (n - lastEvent < 300) {
+			return;
+		}
+		lastEvent = performance.now();
 		if (holding == 'air') {
 			placeItem();
 		} else {

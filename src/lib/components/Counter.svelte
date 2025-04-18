@@ -9,7 +9,7 @@
 	} from '../../routes/play/keyManager';
 	import { holdableModels } from './holdables/holdableItems';
 
-	let paused = false;
+	let lastEvent: DOMHighResTimeStamp = 0;
 
 	const {
 		id
@@ -18,25 +18,24 @@
 	} = $props();
 
 	const getPlaceItem = () => {
-		if (paused) {
+		const n = performance.now();
+		if (n - lastEvent < 300) {
 			return;
 		}
-		paused = true;
+		lastEvent = performance.now();
 		if (playerData.carrying != 'air') {
+			console.warn('Place Triggered xx');
 			if (kitchen.counters[id].holding == 'air') {
 				kitchen.counters[id].holding = playerData.carrying;
 				playerData.carrying = 'air';
 			}
 		} else {
 			if (kitchen.counters[id].holding != 'air') {
+				console.warn('Pickup Triggered oo');
 				playerData.carrying = kitchen.counters[id].holding;
 				kitchen.counters[id].holding = 'air';
 			}
 		}
-
-		setInterval(() => {
-			paused = false;
-		}, 250);
 
 		return;
 	};

@@ -39,10 +39,5 @@
 				<GLTF url="/assets/arcade/Models/GLB/character-employee.glb" />
 			</T.Group>
 		</Collider>
-
-		<T.Mesh position={[0, 0, 0.5]}>
-			<T.BoxGeometry args={[0.01, 0.01, 1]} />
-			<T.MeshBasicMaterial color="darkred" />
-		</T.Mesh>
 	</T.Group>
 </RigidBody>

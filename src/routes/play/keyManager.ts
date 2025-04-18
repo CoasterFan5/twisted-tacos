@@ -4,15 +4,20 @@ const activeKeys: { [key: string]: boolean } = {};
 const speedFactor = 10;
 
 type VoidFunction = () => void;
-const interactListeners: Record<string, VoidFunction> = {};
+const interactListeners: Record<
+	string,
+	{
+		callback: VoidFunction;
+	}
+> = {};
 export const registerInteractListener = (key: string, callback: () => void) => {
-	interactListeners[key] = callback;
-	console.info(interactListeners);
+	interactListeners[key] = {
+		callback
+	};
 };
 
 export const unregisterInteractListener = (key: string) => {
 	delete interactListeners[key];
-	console.info(interactListeners);
 };
 
 export const registerActiveKey = (e: KeyboardEvent) => {
@@ -48,7 +53,7 @@ const keyEvents: {
 	},
 	e: () => {
 		for (const i in interactListeners) {
-			interactListeners[i]();
+			interactListeners[i].callback();
 		}
 	}
 };
