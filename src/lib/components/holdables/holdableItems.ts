@@ -2,8 +2,10 @@ import type { Carryable } from '$lib/types/Carryable';
 import type { Component } from 'svelte';
 import Meat from './Meat.svelte';
 import Plate from './Plate.svelte';
+import CookedMeat from './CookedMeat.svelte';
 
 export const holdableModels: Partial<Record<Carryable, Component>> = {
 	meat: Meat,
-	plate: Plate
+	plate: Plate,
+	cookedMeat: CookedMeat
 };

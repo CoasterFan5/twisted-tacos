@@ -34,9 +34,7 @@ type FridgeData = {} & GenericInteractable;
 
 type CounterData = {} & GenericInteractable;
 
-type StovesData = {
-	cookProgress: 0;
-} & GenericInteractable;
+type StovesData = {} & GenericInteractable;
 
 type Id = string;
 
