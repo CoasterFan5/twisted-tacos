@@ -36,12 +36,15 @@ type CounterData = {} & GenericInteractable;
 
 type StovesData = {} & GenericInteractable;
 
+type TrashCansData = {} & GenericInteractable;
+
 type Id = string;
 
 export const kitchen: {
 	fridges: Record<Id, FridgeData>;
 	counters: Record<Id, CounterData>;
 	stoves: Record<Id, StovesData>;
+	trashCans: Record<Id, TrashCansData>;
 } = $state({
 	fridges: {
 		fA: { holding: 'meat', position: new Vector2(4, 4) }
@@ -68,6 +71,12 @@ export const kitchen: {
 		sA: {
 			holding: 'air',
 			position: new Vector2(4, 0)
+		}
+	},
+	trashCans: {
+		tA: {
+			holding: 'air',
+			position: new Vector2(4, -1)
 		}
 	}
 });
