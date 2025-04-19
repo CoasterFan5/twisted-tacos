@@ -1,4 +1,4 @@
-export const carryable = ['meat', 'plate', 'air', 'cookedMeat', 'burntMeat'] as const;
+export const carryable = ['meat', 'plate', 'air', 'cookedMeat', 'burntMeat', 'tomato'] as const;
 export type Carryable = (typeof carryable)[number];
 
 export const cookables: Partial<

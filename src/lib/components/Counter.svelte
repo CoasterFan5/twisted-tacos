@@ -9,14 +9,13 @@
 	} from '../../routes/play/keyManager';
 	import { holdableModels } from './holdables/holdableItems';
 
-	let lastEvent: DOMHighResTimeStamp = 0;
-
 	const {
 		id
 	}: {
 		id: string;
 	} = $props();
 
+	let lastEvent: DOMHighResTimeStamp = 0;
 	const getPlaceItem = () => {
 		const n = performance.now();
 		if (n - lastEvent < 300) {

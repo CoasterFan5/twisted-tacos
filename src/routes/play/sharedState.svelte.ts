@@ -45,6 +45,7 @@ export const kitchen: {
 	counters: Record<Id, CounterData>;
 	stoves: Record<Id, StovesData>;
 	trashCans: Record<Id, TrashCansData>;
+	tomatoes: Record<Id, GenericInteractable>;
 } = $state({
 	fridges: {
 		fA: { holding: 'meat', position: new Vector2(4, 4) }
@@ -61,10 +62,6 @@ export const kitchen: {
 		cC: {
 			holding: 'plate',
 			position: new Vector2(4, 1)
-		},
-		cD: {
-			holding: 'air',
-			position: new Vector2(4, -1)
 		}
 	},
 	stoves: {
@@ -77,6 +74,12 @@ export const kitchen: {
 		tA: {
 			holding: 'air',
 			position: new Vector2(4, -1)
+		}
+	},
+	tomatoes: {
+		toA: {
+			holding: 'tomato',
+			position: new Vector2(4, -2)
 		}
 	}
 });

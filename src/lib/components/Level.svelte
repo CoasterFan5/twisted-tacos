@@ -8,6 +8,7 @@
 	import TrashCan from './TrashCan.svelte';
 	import { AutoColliders } from '@threlte/rapier';
 	import { Sky } from '@threlte/extras';
+	import Tomatoes from './Tomatoes.svelte';
 
 	const tiles: {
 		id: number;
@@ -31,7 +32,7 @@
 	console.log(tiles);
 </script>
 
-<Sky elevation={4.5} turbidity={10} />
+<Sky elevation={2.5} turbidity={10} />
 <T.Group position={[0, -0.5, 0]}>
 	{#each tiles as row (row)}
 		{#each row as t (t.id)}
@@ -40,6 +41,7 @@
 			</T.Group>
 		{/each}
 	{/each}
+
 	<T.Group position={[-0.5, 1, -0.5]}>
 		<AutoColliders shape="cuboid">
 			<T.Mesh position={[5, 0, 0]}>
@@ -83,6 +85,12 @@
 			{@const data = kitchen.trashCans[o]}
 			<T.Group position={[data.position.x, 0, data.position.y]}>
 				<TrashCan id={o} />
+			</T.Group>
+		{/each}
+		{#each Object.keys(kitchen.tomatoes) as o (o)}
+			{@const data = kitchen.tomatoes[o]}
+			<T.Group position={[data.position.x, 0, data.position.y]}>
+				<Tomatoes id={o} />
 			</T.Group>
 		{/each}
 	</T.Group>

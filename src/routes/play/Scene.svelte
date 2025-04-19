@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { T, useTask } from '@threlte/core';
 	import Player from './Player.svelte';
-	import { AutoColliders } from '@threlte/rapier';
 	import { keyTick } from './keyManager';
 	import { newSpeed, playerSpeed, realPlayerSpeed } from './sharedState.svelte';
 	import Level from '$lib/components/Level.svelte';
@@ -29,7 +28,6 @@
 	}}
 />
 
-<T.DirectionalLight position={[0, 5, 10]} color="white" intensity={3} />
 <T.AmbientLight color="white" intensity={1} />
 
 <Level />
