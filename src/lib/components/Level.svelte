@@ -6,6 +6,8 @@
 	import { kitchen } from '../../routes/play/sharedState.svelte';
 	import Counter from './Counter.svelte';
 	import TrashCan from './TrashCan.svelte';
+	import { AutoColliders } from '@threlte/rapier';
+	import { Sky } from '@threlte/extras';
 
 	const tiles: {
 		id: number;
@@ -29,6 +31,7 @@
 	console.log(tiles);
 </script>
 
+<Sky elevation={4.5} turbidity={10} />
 <T.Group position={[0, -0.5, 0]}>
 	{#each tiles as row (row)}
 		{#each row as t (t.id)}
@@ -37,6 +40,26 @@
 			</T.Group>
 		{/each}
 	{/each}
+	<T.Group position={[-0.5, 1, -0.5]}>
+		<AutoColliders shape="cuboid">
+			<T.Mesh position={[5, 0, 0]}>
+				<T.BoxGeometry args={[0.1, 2, 10]} />
+				<T.MeshBasicMaterial color="beige" />
+			</T.Mesh>
+			<T.Mesh position={[0, 0, 5]}>
+				<T.BoxGeometry args={[10, 2, 0.1]} />
+				<T.MeshBasicMaterial color="beige" />
+			</T.Mesh>
+			<T.Mesh position={[-5, 0, 0]}>
+				<T.BoxGeometry args={[0.1, 2, 10]} />
+				<T.MeshBasicMaterial color="beige" />
+			</T.Mesh>
+			<T.Mesh position={[0, 0, -5]}>
+				<T.BoxGeometry args={[10, 2, 0.1]} />
+				<T.MeshBasicMaterial color="beige" />
+			</T.Mesh>
+		</AutoColliders>
+	</T.Group>
 	<T.Group position={[0, 0.5, 0]}>
 		{#each Object.keys(kitchen.fridges) as o (o)}
 			{@const data = kitchen.fridges[o]}
