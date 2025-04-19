@@ -26,6 +26,7 @@
 			cookingProgress += (deltaTime * 1000) / cookables[holding].cookTime;
 			console.log(cookingProgress);
 			if (cookingProgress > 1) {
+				cookingProgress = 0;
 				kitchen.stoves[id].holding = cookables[holding].result;
 			}
 		}

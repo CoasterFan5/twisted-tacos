@@ -1,4 +1,4 @@
-export const carryable = ['meat', 'plate', 'air', 'cookedMeat'] as const;
+export const carryable = ['meat', 'plate', 'air', 'cookedMeat', 'burntMeat'] as const;
 export type Carryable = (typeof carryable)[number];
 
 export const cookables: Partial<
@@ -11,7 +11,11 @@ export const cookables: Partial<
 	>
 > = {
 	meat: {
-		cookTime: 1000,
+		cookTime: 10_000,
 		result: 'cookedMeat'
+	},
+	cookedMeat: {
+		cookTime: 5_000,
+		result: 'burntMeat'
 	}
 };
