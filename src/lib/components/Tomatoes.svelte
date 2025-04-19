@@ -11,10 +11,7 @@ Command: npx @threlte/gltf@3.0.1 static/assets/market/Models/GLB/display-fruit.g
 	import type { Snippet } from 'svelte';
 	import type { Group, Object3DEventMap } from 'three';
 	import { playerData } from '../../routes/play/sharedState.svelte';
-	import {
-		registerInteractListener,
-		unregisterInteractListener
-	} from '../../routes/play/keyManager';
+	import { registerEListener, unregisterEListener } from '../../routes/play/keyManager';
 	import type { RigidBodyUserData } from '$lib/types/RigidBodyUserData';
 	type Ref = Group<Object3DEventMap> | undefined;
 	let {
@@ -50,12 +47,12 @@ Command: npx @threlte/gltf@3.0.1 static/assets/market/Models/GLB/display-fruit.g
 	args={[0.5, 0.5, 0.5]}
 	oncollisionenter={(e) => {
 		if ((e.targetRigidBody?.userData as RigidBodyUserData).name == 'player') {
-			registerInteractListener(id, pickup);
+			registerEListener(id, pickup);
 		}
 	}}
 	oncollisionexit={(e) => {
 		if ((e.targetRigidBody?.userData as RigidBodyUserData).name == 'player') {
-			unregisterInteractListener(id);
+			unregisterEListener(id);
 		}
 	}}
 >

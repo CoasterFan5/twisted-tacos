@@ -3,10 +3,7 @@
 	import { T } from '@threlte/core';
 	import { AutoColliders } from '@threlte/rapier';
 	import { playerData } from '../../routes/play/sharedState.svelte';
-	import {
-		registerInteractListener,
-		unregisterInteractListener
-	} from '../../routes/play/keyManager';
+	import { registerEListener, unregisterEListener } from '../../routes/play/keyManager';
 
 	let lastEvent: DOMHighResTimeStamp = 0;
 
@@ -32,12 +29,12 @@
 	<AutoColliders
 		oncollisionenter={(e) => {
 			if ((e.targetRigidBody?.userData as RigidBodyUserData).name == 'player') {
-				registerInteractListener(id, placeItem);
+				registerEListener(id, placeItem);
 			}
 		}}
 		oncollisionexit={(e) => {
 			if ((e.targetRigidBody?.userData as RigidBodyUserData).name == 'player') {
-				unregisterInteractListener(id);
+				unregisterEListener(id);
 			}
 		}}
 	>

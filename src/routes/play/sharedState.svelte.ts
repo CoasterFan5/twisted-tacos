@@ -56,7 +56,7 @@ export const kitchen: {
 			position: new Vector2(4, 3)
 		},
 		cB: {
-			holding: 'air',
+			holding: 'slicedTomato',
 			position: new Vector2(4, 2)
 		},
 		cC: {

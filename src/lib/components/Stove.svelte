@@ -1,14 +1,12 @@
 <script lang="ts">
-	import { cookables, type Carryable } from '$lib/types/Carryable';
+	import { type Carryable } from '$lib/types/Carryable';
 	import { T, useTask } from '@threlte/core';
 	import { AutoColliders } from '@threlte/rapier';
 	import { kitchen, playerData } from '../../routes/play/sharedState.svelte';
-	import {
-		registerInteractListener,
-		unregisterInteractListener
-	} from '../../routes/play/keyManager';
+	import { registerEListener, unregisterEListener } from '../../routes/play/keyManager';
 	import type { RigidBodyUserData } from '$lib/types/RigidBodyUserData';
 	import { holdableModels } from './holdables/holdableItems';
+	import { cookables } from './cookables';
 
 	const {
 		id
@@ -63,12 +61,12 @@
 	<AutoColliders
 		oncollisionenter={(e) => {
 			if ((e.targetRigidBody?.userData as RigidBodyUserData).name == 'player') {
-				registerInteractListener(id, getPlaceItem);
+				registerEListener(id, getPlaceItem);
 			}
 		}}
 		oncollisionexit={(e) => {
 			if ((e.targetRigidBody?.userData as RigidBodyUserData).name == 'player') {
-				unregisterInteractListener(id);
+				unregisterEListener(id);
 			}
 		}}
 	>

@@ -4,16 +4,21 @@
 	import { AutoColliders } from '@threlte/rapier';
 	import { kitchen, playerData } from '../../routes/play/sharedState.svelte';
 	import {
+		registerEListener,
 		registerInteractListener,
-		unregisterInteractListener
+		unregisterEListener,
+		unRegisterInteractListener
 	} from '../../routes/play/keyManager';
 	import { holdableModels } from './holdables/holdableItems';
+	import { counterInteractables } from './interactables';
 
 	const {
 		id
 	}: {
 		id: string;
 	} = $props();
+
+	let interactCompletion = 0;
 
 	let lastEvent: DOMHighResTimeStamp = 0;
 	const getPlaceItem = () => {
@@ -39,6 +44,18 @@
 		return;
 	};
 
+	const interact = (timeDiff: number) => {
+		const interactionDetails = counterInteractables[kitchen.counters[id].holding];
+		if (interactionDetails) {
+			interactCompletion += timeDiff / (interactionDetails.interactTime / 1000);
+			console.log(interactCompletion);
+
+			if (interactCompletion >= 1) {
+				kitchen.counters[id].holding = interactionDetails.result;
+			}
+		}
+	};
+
 	let Holding = $derived(holdableModels[kitchen.counters[id].holding]);
 </script>
 
@@ -46,12 +63,16 @@
 	<AutoColliders
 		oncollisionenter={(e) => {
 			if ((e.targetRigidBody?.userData as RigidBodyUserData).name == 'player') {
-				registerInteractListener(id, getPlaceItem);
+				registerEListener(id, getPlaceItem);
+				registerInteractListener(id, interact);
+				interactCompletion = 0;
 			}
 		}}
 		oncollisionexit={(e) => {
 			if ((e.targetRigidBody?.userData as RigidBodyUserData).name == 'player') {
-				unregisterInteractListener(id);
+				unregisterEListener(id);
+				unRegisterInteractListener(id);
+				interactCompletion = 0;
 			}
 		}}
 	>

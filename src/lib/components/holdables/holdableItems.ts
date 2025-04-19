@@ -5,11 +5,13 @@ import Plate from './Plate.svelte';
 import CookedMeat from './CookedMeat.svelte';
 import BurntMeat from './BurntMeat.svelte';
 import Tomato from './Tomato.svelte';
+import SlicedTomato from './SlicedTomato.svelte';
 
 export const holdableModels: Partial<Record<Carryable, Component>> = {
 	meat: Meat,
 	plate: Plate,
 	cookedMeat: CookedMeat,
 	burntMeat: BurntMeat,
-	tomato: Tomato
+	tomato: Tomato,
+	slicedTomato: SlicedTomato
 };

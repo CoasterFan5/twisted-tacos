@@ -4,19 +4,38 @@ const activeKeys: { [key: string]: boolean } = {};
 const speedFactor = 10;
 
 type VoidFunction = () => void;
-const interactListeners: Record<
+type InteractionCallback = (ts: number) => void;
+const eListeners: Record<
 	string,
 	{
 		callback: VoidFunction;
 	}
 > = {};
-export const registerInteractListener = (key: string, callback: () => void) => {
+
+const interactListeners: Record<
+	string,
+	{
+		callback: InteractionCallback;
+	}
+> = {};
+
+export const registerEListener = (key: string, callback: VoidFunction) => {
+	eListeners[key] = {
+		callback
+	};
+};
+
+export const unregisterEListener = (key: string) => {
+	delete eListeners[key];
+};
+
+export const registerInteractListener = (key: string, callback: InteractionCallback) => {
 	interactListeners[key] = {
 		callback
 	};
 };
 
-export const unregisterInteractListener = (key: string) => {
+export const unRegisterInteractListener = (key: string) => {
 	delete interactListeners[key];
 };
 
@@ -52,8 +71,13 @@ const keyEvents: {
 		newSpeed.z += speedFactor * ts;
 	},
 	e: () => {
+		for (const i in eListeners) {
+			eListeners[i].callback();
+		}
+	},
+	q: (ts) => {
 		for (const i in interactListeners) {
-			interactListeners[i].callback();
+			interactListeners[i].callback(ts);
 		}
 	}
 };
