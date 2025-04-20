@@ -15,5 +15,9 @@ export const counterInteractables: Partial<
 	tomato: {
 		interactTime: 2_000,
 		result: 'slicedTomato'
+	},
+	lettuce: {
+		interactTime: 2_000,
+		result: 'lettuceSlice'
 	}
 };

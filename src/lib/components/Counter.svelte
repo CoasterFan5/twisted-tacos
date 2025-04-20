@@ -10,7 +10,7 @@
 		unRegisterInteractListener
 	} from '../../routes/play/keyManager';
 	import { holdableModels } from './holdables/holdableItems';
-	import { counterInteractables } from './interactables';
+	import { counterInteractables } from './counterInteractables';
 
 	const {
 		id

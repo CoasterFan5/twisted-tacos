@@ -52,11 +52,11 @@ export const kitchen: {
 	},
 	counters: {
 		cA: {
-			holding: 'air',
+			holding: 'lettuce',
 			position: new Vector2(4, 3)
 		},
 		cB: {
-			holding: 'slicedTomato',
+			holding: 'air',
 			position: new Vector2(4, 2)
 		},
 		cC: {

@@ -23,8 +23,10 @@
 <style>
 	.a {
 		position: fixed;
+		z-index: 1000;
+		color: white;
 		padding: 1rem;
-		background: rgba(0, 0, 0, 0.5);
+		background: rgba(0, 0, 0, 0.9);
 		top: 0px;
 		right: 0px;
 	}

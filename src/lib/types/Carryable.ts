@@ -5,6 +5,8 @@ export const carryable = [
 	'cookedMeat',
 	'burntMeat',
 	'tomato',
-	'slicedTomato'
+	'slicedTomato',
+	'lettuce',
+	'lettuceSlice'
 ] as const;
 export type Carryable = (typeof carryable)[number];
