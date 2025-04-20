@@ -9,6 +9,8 @@
 	import { AutoColliders } from '@threlte/rapier';
 	import { Sky } from '@threlte/extras';
 	import Tomatoes from './Tomatoes.svelte';
+	import Taco from './holdables/Taco.svelte';
+	import PlateDispenser from './PlateDispenser.svelte';
 
 	const tiles: {
 		id: number;
@@ -32,6 +34,7 @@
 	console.log(tiles);
 </script>
 
+<Taco />
 <Sky elevation={2.5} turbidity={10} />
 <T.Group position={[0, -0.5, 0]}>
 	{#each tiles as row (row)}
@@ -91,6 +94,12 @@
 			{@const data = kitchen.tomatoes[o]}
 			<T.Group position={[data.position.x, 0, data.position.y]}>
 				<Tomatoes id={o} />
+			</T.Group>
+		{/each}
+		{#each Object.keys(kitchen.plateDispensers) as o (o)}
+			{@const data = kitchen.plateDispensers[o]}
+			<T.Group position={[data.position.x, 0, data.position.y]}>
+				<PlateDispenser id={o} />
 			</T.Group>
 		{/each}
 	</T.Group>

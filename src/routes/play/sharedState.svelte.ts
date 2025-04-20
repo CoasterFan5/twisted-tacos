@@ -26,17 +26,26 @@ export const cursorPos = {
 };
 
 type GenericInteractable = {
-	holding: Carryable;
 	position: Vector2;
 };
 
-type FridgeData = {} & GenericInteractable;
+type GenericInteractableWithInventory = {
+	holding: Carryable;
+} & GenericInteractable;
 
-type CounterData = {} & GenericInteractable;
+type FridgeData = {} & GenericInteractableWithInventory;
 
-type StovesData = {} & GenericInteractable;
+type CounterData = {} & GenericInteractableWithInventory;
+
+type StovesData = {} & GenericInteractableWithInventory;
 
 type TrashCansData = {} & GenericInteractable;
+
+type PlateDispenser = {} & GenericInteractable;
+
+type PlateData = {
+	holding: Partial<Record<Carryable, boolean>>;
+};
 
 type Id = string;
 
@@ -46,6 +55,7 @@ export const kitchen: {
 	stoves: Record<Id, StovesData>;
 	trashCans: Record<Id, TrashCansData>;
 	tomatoes: Record<Id, GenericInteractable>;
+	plateDispensers: Record<Id, GenericInteractable>;
 } = $state({
 	fridges: {
 		fA: { holding: 'meat', position: new Vector2(4, 4) }
@@ -81,7 +91,13 @@ export const kitchen: {
 			holding: 'tomato',
 			position: new Vector2(4, -2)
 		}
-	}
+	},
+	plateDispensers: {
+		pA: {
+			position: new Vector2(4, -3)
+		}
+	},
+	plates: {}
 });
 
 export const playerData: {
