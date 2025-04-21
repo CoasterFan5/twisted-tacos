@@ -30,5 +30,9 @@
 		display: flex;
 		flex-direction: column;
 		gap: 1rem;
+		height: 100vh;
+		overflow-y: auto;
+		-ms-overflow-style: none; /* Internet Explorer 10+ */
+		scrollbar-width: none; /* Firefox */
 	}
 </style>
