@@ -27,4 +27,4 @@ jobs:
           CHANNEL: HTML
           ITCH_GAME: lucky-tacos
           ITCH_USER: coasterfan5
-          PACKAGE: build.zip
+          PACKAGE: itch.html
