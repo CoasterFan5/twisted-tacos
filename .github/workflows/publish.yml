@@ -17,8 +17,7 @@ jobs:
       - name: Build page
         run: pnpm run build
       - name: Zip Folder
-        run: |
-          zip -r build.zip ./build
+        run: zip -r build.zip build
 
       - uses: yeslayla/butler-publish-itchio-action@master
         env:
