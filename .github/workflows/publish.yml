@@ -18,8 +18,8 @@ jobs:
         run: pnpm run build
       - uses: vimtor/action-zip@v1.2
         with:
-          files: build
-          dest: build.zip
+          files: itch
+          dest: taco.zip
 
       - uses: yeslayla/butler-publish-itchio-action@master
         env:
@@ -27,4 +27,4 @@ jobs:
           CHANNEL: HTML
           ITCH_GAME: lucky-tacos
           ITCH_USER: coasterfan5
-          PACKAGE: itch.html
+          PACKAGE: taco.zip
