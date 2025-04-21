@@ -16,8 +16,10 @@ jobs:
         run: pnpm install
       - name: Build page
         run: pnpm run build
-      - name: Zip Folder
-        run: zip -r build.zip build
+      - uses: vimtor/action-zip@v1.2
+        with:
+          files: build
+          dest: build.zip
 
       - uses: yeslayla/butler-publish-itchio-action@master
         env:
