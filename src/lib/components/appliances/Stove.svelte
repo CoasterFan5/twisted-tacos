@@ -2,11 +2,11 @@
 	import { type Carryable } from '$lib/types/Carryable';
 	import { T, useTask } from '@threlte/core';
 	import { AutoColliders } from '@threlte/rapier';
-	import { kitchen, playerData } from '../../routes/play/sharedState.svelte';
-	import { registerEListener, unregisterEListener } from '../../routes/play/keyManager';
+	import { kitchenItems, playerData } from '$lib/sharedState.svelte';
+	import { registerEListener, unregisterEListener } from '$lib/keyManager';
 	import type { RigidBodyUserData } from '$lib/types/RigidBodyUserData';
-	import { holdableModels } from './holdables/holdableItems';
-	import { cookables } from './cookables';
+	import { holdableModels } from '$lib/components/holdables/holdableItems';
+	import { cookables } from '$lib/components/cookables';
 
 	const {
 		id
@@ -14,10 +14,12 @@
 		id: string;
 	} = $props();
 
+	const thisStove = $derived(kitchenItems[id]);
+
 	let lastEvent: DOMHighResTimeStamp = 0;
 	let cookingProgress = 0; // When this gets to one we are done
-	let holding: Carryable = $derived(kitchen.stoves[id].holding);
-	let HoldingModel = $derived(holdableModels[kitchen.stoves[id].holding]);
+	let holding: Carryable = $derived(thisStove.holding);
+	let HoldingModel = $derived(holdableModels[thisStove.holding]);
 
 	useTask((deltaTime) => {
 		if (cookables[holding]) {
@@ -25,7 +27,7 @@
 			console.log(cookingProgress);
 			if (cookingProgress > 1) {
 				cookingProgress = 0;
-				kitchen.stoves[id].holding = cookables[holding].result;
+				thisStove.holding = cookables[holding].result;
 			}
 		}
 	});
@@ -46,13 +48,13 @@
 	};
 
 	const placeItem = () => {
-		kitchen.stoves[id].holding = playerData.carrying;
+		thisStove.holding = playerData.carrying;
 		playerData.carrying = 'air';
 		cookingProgress = 0;
 	};
 	const pickUpItem = () => {
 		playerData.carrying = holding;
-		kitchen.stoves[id].holding = 'air';
+		thisStove.holding = 'air';
 		cookingProgress = 0;
 	};
 </script>

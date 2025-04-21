@@ -2,15 +2,15 @@
 	import { type RigidBodyUserData } from '$lib/types/RigidBodyUserData';
 	import { T } from '@threlte/core';
 	import { AutoColliders } from '@threlte/rapier';
-	import { kitchen, playerData } from '../../routes/play/sharedState.svelte';
+	import { kitchenItems, playerData } from '$lib/sharedState.svelte';
 	import {
 		registerEListener,
 		registerInteractListener,
 		unregisterEListener,
 		unRegisterInteractListener
-	} from '../../routes/play/keyManager';
-	import { holdableModels } from './holdables/holdableItems';
-	import { counterInteractables } from './counterInteractables';
+	} from '$lib/keyManager';
+	import { holdableModels } from '$lib/components/holdables/holdableItems';
+	import { counterInteractables } from '$lib/components/counterInteractables';
 
 	const {
 		id
@@ -19,6 +19,8 @@
 	} = $props();
 
 	let interactCompletion = 0;
+
+	const thisCounter = $derived(kitchenItems[id]);
 
 	let lastEvent: DOMHighResTimeStamp = 0;
 	const getPlaceItem = () => {
@@ -29,15 +31,15 @@
 		lastEvent = performance.now();
 		if (playerData.carrying != 'air') {
 			console.warn('Place Triggered xx');
-			if (kitchen.counters[id].holding == 'air') {
-				kitchen.counters[id].holding = playerData.carrying;
+			if (thisCounter.holding == 'air') {
+				thisCounter.holding = playerData.carrying;
 				playerData.carrying = 'air';
 			}
 		} else {
-			if (kitchen.counters[id].holding != 'air') {
+			if (thisCounter.holding != 'air') {
 				console.warn('Pickup Triggered oo');
-				playerData.carrying = kitchen.counters[id].holding;
-				kitchen.counters[id].holding = 'air';
+				playerData.carrying = thisCounter.holding;
+				thisCounter.holding = 'air';
 			}
 		}
 
@@ -45,18 +47,18 @@
 	};
 
 	const interact = (timeDiff: number) => {
-		const interactionDetails = counterInteractables[kitchen.counters[id].holding];
+		const interactionDetails = counterInteractables[thisCounter.holding];
 		if (interactionDetails) {
 			interactCompletion += timeDiff / (interactionDetails.interactTime / 1000);
 			console.log(interactCompletion);
 
 			if (interactCompletion >= 1) {
-				kitchen.counters[id].holding = interactionDetails.result;
+				thisCounter.holding = interactionDetails.result;
 			}
 		}
 	};
 
-	let Holding = $derived(holdableModels[kitchen.counters[id].holding]);
+	let Holding = $derived(holdableModels[kitchenItems[id].holding]);
 </script>
 
 <T.Group>

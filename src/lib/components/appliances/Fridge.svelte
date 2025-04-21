@@ -2,10 +2,8 @@
 	import { type RigidBodyUserData } from '$lib/types/RigidBodyUserData';
 	import { T } from '@threlte/core';
 	import { AutoColliders } from '@threlte/rapier';
-	import { playerData } from '../../routes/play/sharedState.svelte';
-	import { registerEListener, unregisterEListener } from '../../routes/play/keyManager';
-
-	let lastEvent: DOMHighResTimeStamp = 0;
+	import { kitchenItems, playerData } from '$lib//sharedState.svelte';
+	import { registerEListener, unregisterEListener } from '$lib/keyManager.ts';
 
 	const {
 		id
@@ -13,15 +11,10 @@
 		id: string;
 	} = $props();
 
-	const placeItem = () => {
-		const n = performance.now();
-		if (n - lastEvent < 300) {
-			return;
+	const getItem = () => {
+		if (playerData.carrying == 'air') {
+			playerData.carrying = kitchenItems[id].holding || 'air';
 		}
-		lastEvent = performance.now();
-		playerData.carrying = 'air';
-
-		return;
 	};
 </script>
 
@@ -29,7 +22,7 @@
 	<AutoColliders
 		oncollisionenter={(e) => {
 			if ((e.targetRigidBody?.userData as RigidBodyUserData).name == 'player') {
-				registerEListener(id, placeItem);
+				registerEListener(id, getItem);
 			}
 		}}
 		oncollisionexit={(e) => {
@@ -39,8 +32,8 @@
 		}}
 	>
 		<T.Mesh>
-			<T.BoxGeometry args={[1, 1, 1]} />
-			<T.MeshBasicMaterial color="green" />
+			<T.BoxGeometry args={[1, 2, 1]} />
+			<T.MeshBasicMaterial color="white" />
 		</T.Mesh>
 	</AutoColliders>
 </T.Group>

@@ -1,16 +1,11 @@
 <script lang="ts">
 	import { T } from '@threlte/core';
 	import FloorTile from './FloorTile.svelte';
-	import Stove from './Stove.svelte';
-	import Fridge from './Fridge.svelte';
-	import { kitchen } from '../../routes/play/sharedState.svelte';
-	import Counter from './Counter.svelte';
-	import TrashCan from './TrashCan.svelte';
+	import { kitchenItems } from '$lib/sharedState.svelte';
 	import { AutoColliders } from '@threlte/rapier';
 	import { Sky } from '@threlte/extras';
-	import Tomatoes from './Tomatoes.svelte';
 	import Taco from './holdables/Taco.svelte';
-	import PlateDispenser from './PlateDispenser.svelte';
+	import { appliances } from './appliances/appliances';
 
 	const tiles: {
 		id: number;
@@ -66,40 +61,11 @@
 		</AutoColliders>
 	</T.Group>
 	<T.Group position={[0, 0.5, 0]}>
-		{#each Object.keys(kitchen.fridges) as o (o)}
-			{@const data = kitchen.fridges[o]}
-			<T.Group position={[data.position.x, 0, data.position.y]}>
-				<Fridge id={o} />
-			</T.Group>
-		{/each}
-		{#each Object.keys(kitchen.counters) as o (o)}
-			{@const data = kitchen.counters[o]}
-			<T.Group position={[data.position.x, 0, data.position.y]}>
-				<Counter id={o} />
-			</T.Group>
-		{/each}
-		{#each Object.keys(kitchen.stoves) as o (o)}
-			{@const data = kitchen.stoves[o]}
-			<T.Group position={[data.position.x, 0, data.position.y]}>
-				<Stove id={o} />
-			</T.Group>
-		{/each}
-		{#each Object.keys(kitchen.trashCans) as o (o)}
-			{@const data = kitchen.trashCans[o]}
-			<T.Group position={[data.position.x, 0, data.position.y]}>
-				<TrashCan id={o} />
-			</T.Group>
-		{/each}
-		{#each Object.keys(kitchen.tomatoes) as o (o)}
-			{@const data = kitchen.tomatoes[o]}
-			<T.Group position={[data.position.x, 0, data.position.y]}>
-				<Tomatoes id={o} />
-			</T.Group>
-		{/each}
-		{#each Object.keys(kitchen.plateDispensers) as o (o)}
-			{@const data = kitchen.plateDispensers[o]}
-			<T.Group position={[data.position.x, 0, data.position.y]}>
-				<PlateDispenser id={o} />
+		{#each Object.keys(kitchenItems) as t (t)}
+			{@const d = kitchenItems[t]}
+			{@const Comp = appliances[d.type]}
+			<T.Group position={[d.position.x, 0, d.position.y]}>
+				<Comp id={t} />
 			</T.Group>
 		{/each}
 	</T.Group>

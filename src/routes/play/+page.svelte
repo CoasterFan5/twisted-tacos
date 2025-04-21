@@ -2,8 +2,8 @@
 	import { Canvas, T } from '@threlte/core';
 	import Scene from './Scene.svelte';
 	import { World } from '@threlte/rapier';
-	import { registerActiveKey, removeActiveKey } from './keyManager';
-	import { playerData } from './sharedState.svelte';
+	import { registerActiveKey, removeActiveKey } from '$lib/keyManager';
+	import { playerData } from '$lib/sharedState.svelte';
 </script>
 
 <svelte:body onkeydown={registerActiveKey} onkeyup={removeActiveKey} />

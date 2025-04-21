@@ -1,2 +1,2 @@
-export const interactable = ['fridge', 'stove', 'air'] as const;
+export const interactable = ['fridge', 'stove'] as const;
 export type Interactable = (typeof interactable)[number];

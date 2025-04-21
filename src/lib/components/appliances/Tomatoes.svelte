@@ -10,8 +10,8 @@ Command: npx @threlte/gltf@3.0.1 static/assets/market/Models/GLB/display-fruit.g
 	import { Collider } from '@threlte/rapier';
 	import type { Snippet } from 'svelte';
 	import type { Group, Object3DEventMap } from 'three';
-	import { playerData } from '../../routes/play/sharedState.svelte';
-	import { registerEListener, unregisterEListener } from '../../routes/play/keyManager';
+	import { playerData } from '$lib/sharedState.svelte';
+	import { registerEListener, unregisterEListener } from '$lib/keyManager';
 	import type { RigidBodyUserData } from '$lib/types/RigidBodyUserData';
 	type Ref = Group<Object3DEventMap> | undefined;
 	let {
@@ -38,7 +38,9 @@ Command: npx @threlte/gltf@3.0.1 static/assets/market/Models/GLB/display-fruit.g
 			return;
 		}
 		lastEvent = performance.now();
-		playerData.carrying = 'tomato';
+		if (playerData.carrying == 'air') {
+			playerData.carrying = 'tomato';
+		}
 	};
 </script>
 

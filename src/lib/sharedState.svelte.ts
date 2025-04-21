@@ -1,6 +1,8 @@
 import { Vector2, Vector3 } from 'three';
 import type { Carryable } from '$lib/types/Carryable';
 import type { Interactable } from '$lib/types/Interactable';
+import { applianceBuilder } from '$lib/components/appliances/applianceBuilder';
+import type { ApplianceData } from '$lib/types/Appliances';
 export const cameraPos = $state({
 	x: 0,
 	y: 0
@@ -33,8 +35,6 @@ type GenericInteractableWithInventory = {
 	holding: Carryable;
 } & GenericInteractable;
 
-type FridgeData = {} & GenericInteractableWithInventory;
-
 type CounterData = {} & GenericInteractableWithInventory;
 
 type StovesData = {} & GenericInteractableWithInventory;
@@ -49,17 +49,45 @@ type PlateData = {
 
 type Id = string;
 
+export const kitchenItems: Record<Id, ApplianceData> = $state({
+	a: applianceBuilder.fridge({
+		position: new Vector2(4, 4),
+		item: 'meat'
+	}),
+	b: applianceBuilder.counter({
+		position: new Vector2(4, 3)
+	}),
+	c: applianceBuilder.counter({
+		position: new Vector2(4, 2)
+	}),
+	d: applianceBuilder.counter({
+		position: new Vector2(4, 1)
+	}),
+	e: applianceBuilder.stove({
+		position: new Vector2(4, 0)
+	}),
+	f: applianceBuilder.counter({
+		position: new Vector2(4, -1)
+	}),
+	g: applianceBuilder.trashCan({
+		position: new Vector2(4, -2)
+	}),
+	h: applianceBuilder.tomatoes({
+		position: new Vector2(4, -3)
+	}),
+	i: applianceBuilder.plateDispenser({
+		position: new Vector2(4, -4),
+		stock: 3
+	})
+});
+
 export const kitchen: {
-	fridges: Record<Id, FridgeData>;
 	counters: Record<Id, CounterData>;
 	stoves: Record<Id, StovesData>;
 	trashCans: Record<Id, TrashCansData>;
 	tomatoes: Record<Id, GenericInteractable>;
 	plateDispensers: Record<Id, GenericInteractable>;
 } = $state({
-	fridges: {
-		fA: { holding: 'meat', position: new Vector2(4, 4) }
-	},
 	counters: {
 		cA: {
 			holding: 'lettuce',

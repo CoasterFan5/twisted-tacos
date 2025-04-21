@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { T, useTask } from '@threlte/core';
 	import Player from './Player.svelte';
-	import { keyTick } from './keyManager';
-	import { newSpeed, playerSpeed, realPlayerSpeed } from './sharedState.svelte';
+	import { keyTick } from '$lib/keyManager';
+	import { newSpeed, playerSpeed, realPlayerSpeed } from '$lib/sharedState.svelte';
 	import Level from '$lib/components/Level.svelte';
 
 	useTask((timeDiff) => {
