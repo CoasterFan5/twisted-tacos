@@ -14,8 +14,6 @@ jobs:
           version: 8
       - name: Install dependencies
         run: pnpm install
-      - name: Copy assets
-        run: pnpm run copy
       - name: Build page
         run: pnpm run build
       - uses: yeslayla/butler-publish-itchio-action@master
