@@ -25,6 +25,7 @@
 		"globals": "^16.0.0",
 		"prettier": "^3.4.2",
 		"prettier-plugin-svelte": "^3.3.3",
+		"sass-embedded": "^1.86.3",
 		"svelte": "^5.0.0",
 		"svelte-check": "^4.0.0",
 		"typescript": "^5.0.0",
@@ -38,6 +39,7 @@
 	},
 	"dependencies": {
 		"@dimforge/rapier3d-compat": "^0.15.1",
+		"@fontsource-variable/caveat": "^5.2.5",
 		"@sveltejs/adapter-cloudflare": "^7.0.1",
 		"@sveltejs/adapter-static": "^3.0.8",
 		"@threlte/core": "^8.0.2",

@@ -2,9 +2,12 @@
 	import { T, useTask } from '@threlte/core';
 	import Player from './Player.svelte';
 	import { keyTick } from '$lib/keyManager';
-	import { newSpeed, playerSpeed, realPlayerSpeed } from '$lib/sharedState.svelte';
+	import { newSpeed, orders, playerSpeed, realPlayerSpeed } from '$lib/sharedState.svelte';
 	import Level from '$lib/components/Level.svelte';
 	import { Debug } from '@threlte/rapier';
+	import { getRandomTacoOrder } from '$lib/tacos/getRandomOrder';
+
+	let timeSinceLastTaco = 0;
 
 	useTask((timeDiff) => {
 		newSpeed.setX(-playerSpeed.x * 0.1);
@@ -18,6 +21,15 @@
 		realPlayerSpeed.x = playerSpeed.x * speedConstant;
 		realPlayerSpeed.y = playerSpeed.y * speedConstant;
 		realPlayerSpeed.z = playerSpeed.z * speedConstant;
+
+		if (timeSinceLastTaco > 1 && orders.length < 4) {
+			timeSinceLastTaco = 0;
+			orders.push({
+				id: Math.random(),
+				req: getRandomTacoOrder()
+			});
+		}
+		timeSinceLastTaco += timeDiff;
 	});
 </script>
 

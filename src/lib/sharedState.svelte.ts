@@ -3,6 +3,7 @@ import type { CarryableData } from '$lib/types/Carryable';
 import { applianceBuilder } from '$lib/components/appliances/applianceBuilder';
 import type { ApplianceData } from '$lib/types/Appliances';
 import { holdableBuilder } from './components/holdables/holdableBuilder';
+import type { Taco } from './tacos/types';
 export const cameraPos = $state({
 	x: 0,
 	y: 0
@@ -28,6 +29,11 @@ export const cursorPos = {
 };
 
 type Id = string;
+
+export const orders: {
+	id: number;
+	req: Taco;
+}[] = $state([]);
 
 export const kitchenItems: Record<Id, ApplianceData> = $state({
 	a: applianceBuilder.counter({

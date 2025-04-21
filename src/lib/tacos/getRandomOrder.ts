@@ -4,10 +4,18 @@ const randomBool = () => {
 	return Math.random() > 0.5;
 };
 
-export const getRandomTacoOrders: () => Taco = () => {
-	return {
-		cookedMeat: true,
-		lettuceSlice: randomBool(),
-		slicedTomato: randomBool()
-	};
+export const getRandomTacoOrder: () => Taco = () => {
+	const r: Taco = {};
+
+	r['cookedMeat'] = true;
+
+	if (randomBool()) {
+		r['lettuceSlice'] = true;
+	}
+
+	if (randomBool()) {
+		r['slicedTomato'] = true;
+	}
+
+	return r;
 };

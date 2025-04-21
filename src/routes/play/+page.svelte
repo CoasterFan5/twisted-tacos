@@ -4,6 +4,7 @@
 	import { World } from '@threlte/rapier';
 	import { registerActiveKey, removeActiveKey } from '$lib/keyManager';
 	import { playerData } from '$lib/sharedState.svelte';
+	import Overlay from '$lib/components/ui/Overlay.svelte';
 </script>
 
 <svelte:body onkeydown={registerActiveKey} onkeyup={removeActiveKey} />
@@ -12,6 +13,7 @@
 	Carrying {JSON.stringify(playerData.carrying)}
 </span>
 
+<Overlay />
 <Canvas autoRender={true} renderMode="always">
 	<World>
 		<T.BoxHelper>
