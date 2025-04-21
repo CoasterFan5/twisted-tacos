@@ -13,6 +13,7 @@ Command: npx @threlte/gltf@3.0.1 static/assets/market/Models/GLB/display-fruit.g
 	import { playerData } from '$lib/sharedState.svelte';
 	import { registerEListener, unregisterEListener } from '$lib/keyManager';
 	import type { RigidBodyUserData } from '$lib/types/RigidBodyUserData';
+	import { holdableBuilder } from '../holdables/holdableBuilder';
 	type Ref = Group<Object3DEventMap> | undefined;
 	let {
 		fallback,
@@ -38,8 +39,8 @@ Command: npx @threlte/gltf@3.0.1 static/assets/market/Models/GLB/display-fruit.g
 			return;
 		}
 		lastEvent = performance.now();
-		if (playerData.carrying == 'air') {
-			playerData.carrying = 'tomato';
+		if (playerData.carrying.type == 'air') {
+			playerData.carrying = holdableBuilder('tomato');
 		}
 	};
 </script>

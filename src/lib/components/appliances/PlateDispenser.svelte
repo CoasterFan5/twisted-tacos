@@ -5,8 +5,8 @@
 	import { kitchenItems, playerData } from '$lib/sharedState.svelte';
 	import { registerEListener, unregisterEListener } from '$lib/keyManager';
 	import Plate from '../holdables/Plate.svelte';
+	import { holdableBuilder } from '../holdables/holdableBuilder';
 
-	/* eslint-disable no-unused-vars */
 	const {
 		id
 	}: {
@@ -22,13 +22,13 @@
 			return;
 		}
 		lastEvent = performance.now();
-		if (playerData.carrying == 'air' && thisPlateDispenser.stock > 0) {
-			playerData.carrying = 'plate';
+		if (playerData.carrying.type == 'air' && thisPlateDispenser.stock > 0) {
+			playerData.carrying = holdableBuilder('plate');
 			thisPlateDispenser.stock = Math.round(thisPlateDispenser.stock - 1);
 			return;
 		}
-		if (playerData.carrying == 'plate') {
-			playerData.carrying = 'air';
+		if (playerData.carrying.type == 'plate') {
+			playerData.carrying = holdableBuilder('air');
 			thisPlateDispenser.stock = Math.round(thisPlateDispenser.stock + 1);
 		}
 	};

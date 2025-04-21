@@ -11,3 +11,8 @@ export const carryable = [
 
 export type Ingredient = (typeof ingredients)[number];
 export type Carryable = (typeof carryable)[number];
+
+export type CarryableData = {
+	type: Carryable;
+	children: CarryableData[] | undefined;
+};

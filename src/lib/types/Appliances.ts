@@ -1,5 +1,5 @@
 import type { Vector2 } from 'three';
-import type { Carryable } from './Carryable';
+import type { CarryableData } from './Carryable';
 
 export const applianceNames = [
 	'fridge',
@@ -15,6 +15,6 @@ export type ApplianceData = {
 	type: ApplianceName;
 	position: Vector2;
 	constantInventory: boolean;
-	holding: Carryable;
+	holding: CarryableData;
 	stock: number; // can specify if an apliance has limited stock
 };

@@ -7,6 +7,7 @@
 	import type { RigidBodyUserData } from '$lib/types/RigidBodyUserData';
 	import { holdableModels } from '$lib/components/holdables/holdableItems';
 	import { cookables } from '$lib/components/cookables';
+	import { holdableBuilder } from '../holdables/holdableBuilder';
 
 	const {
 		id
@@ -18,16 +19,18 @@
 
 	let lastEvent: DOMHighResTimeStamp = 0;
 	let cookingProgress = 0; // When this gets to one we are done
-	let holding: Carryable = $derived(thisStove.holding);
-	let HoldingModel = $derived(holdableModels[thisStove.holding]);
+	let holding = $derived(thisStove.holding);
+	let HoldingModel = $derived(holdableModels[thisStove.holding.type]);
 
 	useTask((deltaTime) => {
-		if (cookables[holding]) {
-			cookingProgress += (deltaTime * 1000) / cookables[holding].cookTime;
+		const cookData = cookables[holding.type];
+
+		if (cookData) {
+			cookingProgress += (deltaTime * 1000) / cookData.cookTime;
 			console.log(cookingProgress);
 			if (cookingProgress > 1) {
 				cookingProgress = 0;
-				thisStove.holding = cookables[holding].result;
+				thisStove.holding = cookData.result;
 			}
 		}
 	});
@@ -38,10 +41,10 @@
 			return;
 		}
 		lastEvent = performance.now();
-		if (holding == 'air') {
+		if (holding.type == 'air') {
 			placeItem();
 		} else {
-			if (playerData.carrying == 'air') {
+			if (playerData.carrying.type == 'air') {
 				pickUpItem();
 			}
 		}
@@ -49,12 +52,12 @@
 
 	const placeItem = () => {
 		thisStove.holding = playerData.carrying;
-		playerData.carrying = 'air';
+		playerData.carrying = holdableBuilder('air');
 		cookingProgress = 0;
 	};
 	const pickUpItem = () => {
 		playerData.carrying = holding;
-		thisStove.holding = 'air';
+		thisStove.holding = holdableBuilder('air');
 		cookingProgress = 0;
 	};
 </script>

@@ -1,4 +1,5 @@
-import type { Carryable } from '$lib/types/Carryable';
+import type { Carryable, CarryableData } from '$lib/types/Carryable';
+import { holdableBuilder } from './holdables/holdableBuilder';
 
 /*
 Defines what can be interacted with on a counter
@@ -8,16 +9,16 @@ export const counterInteractables: Partial<
 		Carryable,
 		{
 			interactTime: number;
-			result: Carryable;
+			result: CarryableData;
 		}
 	>
 > = {
 	tomato: {
 		interactTime: 2_000,
-		result: 'slicedTomato'
+		result: holdableBuilder('slicedTomato')
 	},
 	lettuce: {
 		interactTime: 2_000,
-		result: 'lettuceSlice'
+		result: holdableBuilder('lettuceSlice')
 	}
 };

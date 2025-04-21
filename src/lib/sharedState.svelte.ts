@@ -1,8 +1,8 @@
 import { Vector2, Vector3 } from 'three';
-import type { Carryable } from '$lib/types/Carryable';
-import type { Interactable } from '$lib/types/Interactable';
+import type { CarryableData } from '$lib/types/Carryable';
 import { applianceBuilder } from '$lib/components/appliances/applianceBuilder';
 import type { ApplianceData } from '$lib/types/Appliances';
+import { holdableBuilder } from './components/holdables/holdableBuilder';
 export const cameraPos = $state({
 	x: 0,
 	y: 0
@@ -27,47 +27,31 @@ export const cursorPos = {
 	z: 0
 };
 
-type GenericInteractable = {
-	position: Vector2;
-};
-
-type GenericInteractableWithInventory = {
-	holding: Carryable;
-} & GenericInteractable;
-
-type CounterData = {} & GenericInteractableWithInventory;
-
-type StovesData = {} & GenericInteractableWithInventory;
-
-type TrashCansData = {} & GenericInteractable;
-
-type PlateDispenser = {} & GenericInteractable;
-
-type PlateData = {
-	holding: Partial<Record<Carryable, boolean>>;
-};
-
 type Id = string;
 
 export const kitchenItems: Record<Id, ApplianceData> = $state({
 	a: applianceBuilder.fridge({
 		position: new Vector2(4, 4),
-		item: 'meat'
+		item: holdableBuilder('meat')
 	}),
 	b: applianceBuilder.counter({
-		position: new Vector2(4, 3)
+		position: new Vector2(4, 3),
+		holding: holdableBuilder('air')
 	}),
 	c: applianceBuilder.counter({
-		position: new Vector2(4, 2)
+		position: new Vector2(4, 2),
+		holding: holdableBuilder('air')
 	}),
 	d: applianceBuilder.counter({
-		position: new Vector2(4, 1)
+		position: new Vector2(4, 1),
+		holding: holdableBuilder('air')
 	}),
 	e: applianceBuilder.stove({
 		position: new Vector2(4, 0)
 	}),
 	f: applianceBuilder.counter({
-		position: new Vector2(4, -1)
+		position: new Vector2(4, -1),
+		holding: holdableBuilder('air')
 	}),
 	g: applianceBuilder.trashCan({
 		position: new Vector2(4, -2)
@@ -81,57 +65,8 @@ export const kitchenItems: Record<Id, ApplianceData> = $state({
 	})
 });
 
-export const kitchen: {
-	counters: Record<Id, CounterData>;
-	stoves: Record<Id, StovesData>;
-	trashCans: Record<Id, TrashCansData>;
-	tomatoes: Record<Id, GenericInteractable>;
-	plateDispensers: Record<Id, GenericInteractable>;
-} = $state({
-	counters: {
-		cA: {
-			holding: 'lettuce',
-			position: new Vector2(4, 3)
-		},
-		cB: {
-			holding: 'air',
-			position: new Vector2(4, 2)
-		},
-		cC: {
-			holding: 'plate',
-			position: new Vector2(4, 1)
-		}
-	},
-	stoves: {
-		sA: {
-			holding: 'air',
-			position: new Vector2(4, 0)
-		}
-	},
-	trashCans: {
-		tA: {
-			holding: 'air',
-			position: new Vector2(4, -1)
-		}
-	},
-	tomatoes: {
-		toA: {
-			holding: 'tomato',
-			position: new Vector2(4, -2)
-		}
-	},
-	plateDispensers: {
-		pA: {
-			position: new Vector2(4, -3)
-		}
-	},
-	plates: {}
-});
-
 export const playerData: {
-	carrying: Carryable;
-	interactableType: Interactable;
+	carrying: CarryableData;
 } = $state({
-	carrying: 'air',
-	interactableType: 'air'
+	carrying: holdableBuilder('air')
 });

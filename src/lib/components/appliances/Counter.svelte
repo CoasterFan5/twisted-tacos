@@ -11,6 +11,8 @@
 	} from '$lib/keyManager';
 	import { holdableModels } from '$lib/components/holdables/holdableItems';
 	import { counterInteractables } from '$lib/components/counterInteractables';
+	import { holdableBuilder } from '../holdables/holdableBuilder';
+	import HoldableRender from '../holdables/HoldableRender.svelte';
 
 	const {
 		id
@@ -29,17 +31,21 @@
 			return;
 		}
 		lastEvent = performance.now();
-		if (playerData.carrying != 'air') {
+		if (thisCounter.holding.type == 'air') {
 			console.warn('Place Triggered xx');
-			if (thisCounter.holding == 'air') {
-				thisCounter.holding = playerData.carrying;
-				playerData.carrying = 'air';
-			}
+			thisCounter.holding = playerData.carrying;
+			playerData.carrying = holdableBuilder('air');
 		} else {
-			if (thisCounter.holding != 'air') {
+			if (playerData.carrying.type == 'air') {
 				console.warn('Pickup Triggered oo');
 				playerData.carrying = thisCounter.holding;
-				thisCounter.holding = 'air';
+				thisCounter.holding = holdableBuilder('air');
+			} else if (thisCounter.holding.type == 'plate') {
+				thisCounter.holding.children = [
+					...(thisCounter.holding.children || []),
+					playerData.carrying
+				];
+				playerData.carrying = holdableBuilder('air');
 			}
 		}
 
@@ -47,7 +53,7 @@
 	};
 
 	const interact = (timeDiff: number) => {
-		const interactionDetails = counterInteractables[thisCounter.holding];
+		const interactionDetails = counterInteractables[thisCounter.holding.type];
 		if (interactionDetails) {
 			interactCompletion += timeDiff / (interactionDetails.interactTime / 1000);
 			console.log(interactCompletion);
@@ -58,7 +64,7 @@
 		}
 	};
 
-	let Holding = $derived(holdableModels[kitchenItems[id].holding]);
+	let Holding = $derived(holdableModels[kitchenItems[id].holding.type]);
 </script>
 
 <T.Group>
@@ -83,7 +89,7 @@
 			<T.MeshBasicMaterial color="yellow" />
 		</T.Mesh>
 		<T.Group position={[0, 0.5, 0]}>
-			<Holding />
+			<HoldableRender carryable={thisCounter.holding} />
 		</T.Group>
 	</AutoColliders>
 </T.Group>

@@ -9,7 +9,7 @@
 <svelte:body onkeydown={registerActiveKey} onkeyup={removeActiveKey} />
 
 <span class="a">
-	Carrying {playerData.carrying}
+	Carrying {JSON.stringify(playerData.carrying)}
 </span>
 
 <Canvas autoRender={true} renderMode="always">

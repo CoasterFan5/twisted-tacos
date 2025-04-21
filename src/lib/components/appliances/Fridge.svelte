@@ -12,8 +12,8 @@
 	} = $props();
 
 	const getItem = () => {
-		if (playerData.carrying == 'air') {
-			playerData.carrying = kitchenItems[id].holding || 'air';
+		if (playerData.carrying.type == 'air') {
+			playerData.carrying = kitchenItems[id].holding;
 		}
 	};
 </script>

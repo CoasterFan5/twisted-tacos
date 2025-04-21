@@ -1,13 +1,14 @@
 import type { ApplianceData, ApplianceName } from '$lib/types/Appliances';
-import type { Carryable } from '$lib/types/Carryable';
+import type { CarryableData } from '$lib/types/Carryable';
 import { Vector2 } from 'three';
+import { holdableBuilder } from '../holdables/holdableBuilder';
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 // Define separate argument type records
 type ApplianceArgTypes = {
-	fridge: { item: Carryable; position: Vector2 };
+	fridge: { item: CarryableData; position: Vector2 };
 	stove: { position: Vector2 };
-	counter: { position: Vector2 };
+	counter: { position: Vector2; holding: CarryableData };
 	trashCan: { position: Vector2 };
 	tomatoes: { position: Vector2 };
 	plateDispenser: { position: Vector2; stock: number };
@@ -40,7 +41,7 @@ export const applianceBuilder: ApplianceBuilders = {
 		return {
 			type: 'stove',
 			position: args.position,
-			holding: 'air',
+			holding: holdableBuilder('air'),
 			constantInventory: false,
 			stock: -1
 		};
@@ -49,7 +50,7 @@ export const applianceBuilder: ApplianceBuilders = {
 		return {
 			type: 'counter',
 			position: args.position,
-			holding: 'air',
+			holding: args.holding,
 			constantInventory: false,
 			stock: -1
 		};
@@ -58,7 +59,7 @@ export const applianceBuilder: ApplianceBuilders = {
 		return {
 			type: 'trashCan',
 			position: args.position,
-			holding: 'air',
+			holding: holdableBuilder('air'),
 			constantInventory: true,
 			stock: -1
 		};
@@ -67,7 +68,7 @@ export const applianceBuilder: ApplianceBuilders = {
 		return {
 			type: 'tomatoes',
 			position: args.position,
-			holding: 'tomato',
+			holding: holdableBuilder('air'),
 			constantInventory: true,
 			stock: -1
 		};
@@ -76,7 +77,7 @@ export const applianceBuilder: ApplianceBuilders = {
 		return {
 			type: 'plateDispenser',
 			position: args.position,
-			holding: 'plate',
+			holding: holdableBuilder('plate'),
 			constantInventory: true,
 			stock: args.stock
 		};

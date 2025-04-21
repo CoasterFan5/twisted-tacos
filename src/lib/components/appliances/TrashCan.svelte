@@ -4,6 +4,7 @@
 	import { AutoColliders } from '@threlte/rapier';
 	import { playerData } from '$lib/sharedState.svelte';
 	import { registerEListener, unregisterEListener } from '$lib/keyManager';
+	import { holdableBuilder } from '../holdables/holdableBuilder';
 
 	let lastEvent: DOMHighResTimeStamp = 0;
 
@@ -19,7 +20,11 @@
 			return;
 		}
 		lastEvent = performance.now();
-		playerData.carrying = 'air';
+		if (playerData.carrying.type == 'plate') {
+			playerData.carrying.children = undefined;
+			return;
+		}
+		playerData.carrying = holdableBuilder('air');
 
 		return;
 	};
