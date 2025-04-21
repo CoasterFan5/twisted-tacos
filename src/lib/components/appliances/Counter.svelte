@@ -44,6 +44,9 @@
 			if (thisAllowedChildren && thisAllowedChildren[playerData.carrying.type]) {
 				thisCounter.holding.children[playerData.carrying.type] = playerData.carrying;
 				playerData.carrying = holdableBuilder('air');
+			} else if (thisCounter.holding.type == 'plate' && thisCounter.holding.children.tacoShell) {
+				const foundATaco = thisCounter.holding.children.tacoShell;
+				foundATaco.children[playerData.carrying.type] = playerData.carrying;
 			}
 			return;
 		}
