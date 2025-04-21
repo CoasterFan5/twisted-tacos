@@ -3,7 +3,7 @@
 	import { T } from '@threlte/core';
 	import { AutoColliders } from '@threlte/rapier';
 	import { kitchenItems, playerData } from '$lib//sharedState.svelte';
-	import { registerEListener, unregisterEListener } from '$lib/keyManager.ts';
+	import { registerEListener, unregisterEListener } from '$lib/keyManager';
 
 	const {
 		id

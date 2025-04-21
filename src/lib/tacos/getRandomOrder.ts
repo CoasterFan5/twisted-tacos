@@ -5,17 +5,9 @@ const randomBool = () => {
 };
 
 export const getRandomTacoOrder: () => Taco = () => {
-	const r: Taco = {};
-
-	r['cookedMeat'] = true;
-
-	if (randomBool()) {
-		r['lettuceSlice'] = true;
-	}
-
-	if (randomBool()) {
-		r['slicedTomato'] = true;
-	}
-
-	return r;
+	return {
+		cookedMeat: true,
+		lettuceSlice: randomBool(),
+		slicedTomato: randomBool()
+	};
 };

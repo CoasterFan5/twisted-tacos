@@ -1,7 +1,11 @@
+<script>
+	import { playerData } from '$lib/sharedState.svelte';
+</script>
+
 <div class="dayInfo">
 	<h2>Day 1</h2>
 	<p>Due Today: $10</p>
-	<p>Balance: $10</p>
+	<p>Balance: ${playerData.balance.toLocaleString('en-US')}</p>
 </div>
 
 <style lang="scss">

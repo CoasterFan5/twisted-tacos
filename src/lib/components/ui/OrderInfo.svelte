@@ -1,5 +1,6 @@
 <script lang="ts">
 	import type { orders } from '$lib/sharedState.svelte';
+	import type { Ingredient } from '$lib/types/Carryable';
 
 	const partyNumber = Math.floor(Math.random() * 100);
 
@@ -24,7 +25,10 @@
 	<h2>Ticket #{partyNumber}</h2>
 	<p>Taco With:</p>
 	{#each Object.keys(orderInfo.req) as k (k)}
-		<p>{betterNames[k] || 'Mystery'}</p>
+		{@const d = orderInfo.req[k as Ingredient]}
+		{#if d}
+			<p>{betterNames[k] || 'Mystery'}</p>
+		{/if}
 	{/each}
 </div>
 

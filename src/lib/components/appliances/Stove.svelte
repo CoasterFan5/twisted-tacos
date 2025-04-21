@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { type Carryable } from '$lib/types/Carryable';
 	import { T, useTask } from '@threlte/core';
 	import { AutoColliders } from '@threlte/rapier';
 	import { kitchenItems, playerData } from '$lib/sharedState.svelte';

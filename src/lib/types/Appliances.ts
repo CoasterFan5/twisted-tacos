@@ -8,7 +8,8 @@ export const applianceNames = [
 	'trashCan',
 	'tomatoes',
 	'plateDispenser',
-	'spinner'
+	'spinner',
+	'foodDelivery'
 ] as const;
 export type ApplianceName = (typeof applianceNames)[number];
 

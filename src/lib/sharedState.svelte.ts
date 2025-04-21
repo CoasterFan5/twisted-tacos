@@ -66,14 +66,18 @@ export const kitchenItems: Record<Id, ApplianceData> = $state({
 		position: new Vector2(4, -3),
 		stock: 5
 	}),
-
+	i: applianceBuilder.foodDelivery({
+		position: new Vector2(2, -5)
+	}),
 	j: applianceBuilder.spinner({
-		position: new Vector2(0, -4)
+		position: new Vector2(0, -5)
 	})
 });
 
 export const playerData: {
 	carrying: CarryableData;
+	balance: number;
 } = $state({
-	carrying: holdableBuilder('air')
+	carrying: holdableBuilder('air'),
+	balance: 10
 });

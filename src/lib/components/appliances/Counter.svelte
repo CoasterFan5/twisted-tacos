@@ -9,7 +9,7 @@
 		unregisterEListener,
 		unRegisterInteractListener
 	} from '$lib/keyManager';
-	import { allowedChildren, holdableModels } from '$lib/components/holdables/holdableItems';
+	import { allowedChildren } from '$lib/components/holdables/holdableItems';
 	import { counterInteractables } from '$lib/components/counterInteractables';
 	import { holdableBuilder } from '../holdables/holdableBuilder';
 	import HoldableRender from '../holdables/HoldableRender.svelte';

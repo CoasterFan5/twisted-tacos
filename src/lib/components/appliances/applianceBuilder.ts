@@ -13,6 +13,7 @@ type ApplianceArgTypes = {
 	tomatoes: { position: Vector2 };
 	plateDispenser: { position: Vector2; stock: number };
 	spinner: { position: Vector2 };
+	foodDelivery: { position: Vector2 };
 	// Define argument types for other appliances here
 	// oven: { capacity: number; position: Vector2 };
 	// sink: { waterSource: string; position: Vector2 };
@@ -89,6 +90,15 @@ export const applianceBuilder: ApplianceBuilders = {
 			position: args.position,
 			holding: holdableBuilder('plate'),
 			constantInventory: true,
+			stock: -1
+		};
+	},
+	foodDelivery: (args: ApplianceArgTypes['foodDelivery']) => {
+		return {
+			type: 'foodDelivery',
+			position: args.position,
+			holding: holdableBuilder('air'),
+			constantInventory: false,
 			stock: -1
 		};
 	}

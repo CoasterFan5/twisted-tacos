@@ -8,6 +8,7 @@ import TrashCan from './TrashCan.svelte';
 import Tomatoes from './Tomatoes.svelte';
 import PlateDispenser from './PlateDispenser.svelte';
 import Spinner from './Spinner.svelte';
+import FoodDelivery from './FoodDelivery.svelte';
 
 export const appliances: Record<ApplianceName, Component> = {
 	fridge: Fridge,
@@ -16,5 +17,6 @@ export const appliances: Record<ApplianceName, Component> = {
 	trashCan: TrashCan,
 	tomatoes: Tomatoes,
 	plateDispenser: PlateDispenser,
-	spinner: Spinner
+	spinner: Spinner,
+	foodDelivery: FoodDelivery
 };
