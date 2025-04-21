@@ -24,6 +24,6 @@ jobs:
         env:
           BUTLER_CREDENTIALS: ${{ secrets.BUTLER_CREDENTIALS }}
           CHANNEL: HTML
-          ITCH_GAME: luckyTacos
+          ITCH_GAME: lucky-tacos
           ITCH_USER: coasterfan5
           PACKAGE: build.zip
