@@ -14,6 +14,9 @@ importers:
       '@fontsource-variable/caveat':
         specifier: ^5.2.5
         version: 5.2.5
+      '@fontsource/luckiest-guy':
+        specifier: ^5.2.5
+        version: 5.2.5
       '@sveltejs/adapter-cloudflare':
         specifier: ^7.0.1
         version: 7.0.1(@sveltejs/kit@2.20.7(@sveltejs/vite-plugin-svelte@5.0.3(svelte@5.27.0)(vite@6.2.6(sass-embedded@1.86.3)))(svelte@5.27.0)(vite@6.2.6(sass-embedded@1.86.3)))(wrangler@4.12.0(@cloudflare/workers-types@4.20250418.0))
@@ -360,6 +363,9 @@ packages:
 
   '@fontsource-variable/caveat@5.2.5':
     resolution: {integrity: sha512-z/ToKJwh6c1XPcqkV0X3G+pJD89qFoSCuA+2TFYBVXESh/MpRyRrshlu87wCsvzY+6D8wQsAO3ynP6fjNhjusw==}
+
+  '@fontsource/luckiest-guy@5.2.5':
+    resolution: {integrity: sha512-JsFuZjAv+gNPaTskVIATYpHQULzHYxqNb2sxHlEJ2zOGkkdXfYNMteUi6NTIGy+3eggxm3k0/q6scbc6lc/pZw==}
 
   '@humanfs/core@0.19.1':
     resolution: {integrity: sha512-5DyQ4+1JEUzejeK1JGICcideyfUbGixgS9jNgex5nqkW+cY7WZhxBigmieN5Qnw9ZosSNVC9KQKyb+GUaGyKUA==}
@@ -1937,6 +1943,8 @@ snapshots:
   '@fastify/busboy@2.1.1': {}
 
   '@fontsource-variable/caveat@5.2.5': {}
+
+  '@fontsource/luckiest-guy@5.2.5': {}
 
   '@humanfs/core@0.19.1': {}
 
