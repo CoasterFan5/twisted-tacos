@@ -1,12 +1,13 @@
+export const ingredients = ['cookedMeat', 'slicedTomato', 'lettuceSlice'] as const;
 export const carryable = [
 	'meat',
 	'plate',
 	'air',
-	'cookedMeat',
 	'burntMeat',
 	'tomato',
-	'slicedTomato',
 	'lettuce',
-	'lettuceSlice'
+	...ingredients
 ] as const;
+
+export type Ingredient = (typeof ingredients)[number];
 export type Carryable = (typeof carryable)[number];
