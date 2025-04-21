@@ -1,4 +1,4 @@
-export const ingredients = ['cookedMeat', 'slicedTomato', 'lettuceSlice'] as const;
+export const ingredients = ['cookedMeat', 'slicedTomato', 'lettuceSlice', 'tacoShell'] as const;
 export const carryable = [
 	'meat',
 	'plate',
@@ -14,5 +14,5 @@ export type Carryable = (typeof carryable)[number];
 
 export type CarryableData = {
 	type: Carryable;
-	children: CarryableData[] | undefined;
+	children: Partial<Record<Carryable, CarryableData>>;
 };

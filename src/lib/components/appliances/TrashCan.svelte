@@ -21,7 +21,7 @@
 		}
 		lastEvent = performance.now();
 		if (playerData.carrying.type == 'plate') {
-			playerData.carrying.children = undefined;
+			playerData.carrying.children = {};
 			return;
 		}
 		playerData.carrying = holdableBuilder('air');

@@ -4,7 +4,6 @@
 	import { kitchenItems } from '$lib/sharedState.svelte';
 	import { AutoColliders } from '@threlte/rapier';
 	import { Sky } from '@threlte/extras';
-	import Taco from './holdables/Taco.svelte';
 	import { appliances } from './appliances/appliances';
 
 	const tiles: {
@@ -29,7 +28,6 @@
 	console.log(tiles);
 </script>
 
-<Taco />
 <Sky elevation={2.5} turbidity={10} />
 <T.Group position={[0, -0.5, 0]}>
 	{#each tiles as row (row)}

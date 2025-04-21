@@ -9,7 +9,7 @@
 		unregisterEListener,
 		unRegisterInteractListener
 	} from '$lib/keyManager';
-	import { holdableModels } from '$lib/components/holdables/holdableItems';
+	import { allowedChildren, holdableModels } from '$lib/components/holdables/holdableItems';
 	import { counterInteractables } from '$lib/components/counterInteractables';
 	import { holdableBuilder } from '../holdables/holdableBuilder';
 	import HoldableRender from '../holdables/HoldableRender.svelte';
@@ -35,18 +35,17 @@
 			console.warn('Place Triggered xx');
 			thisCounter.holding = playerData.carrying;
 			playerData.carrying = holdableBuilder('air');
+		} else if (playerData.carrying.type == 'air') {
+			console.warn('Pickup Triggered oo');
+			playerData.carrying = thisCounter.holding;
+			thisCounter.holding = holdableBuilder('air');
 		} else {
-			if (playerData.carrying.type == 'air') {
-				console.warn('Pickup Triggered oo');
-				playerData.carrying = thisCounter.holding;
-				thisCounter.holding = holdableBuilder('air');
-			} else if (thisCounter.holding.type == 'plate') {
-				thisCounter.holding.children = [
-					...(thisCounter.holding.children || []),
-					playerData.carrying
-				];
+			const thisAllowedChildren = allowedChildren[thisCounter.holding.type];
+			if (thisAllowedChildren && thisAllowedChildren[playerData.carrying.type]) {
+				thisCounter.holding.children[playerData.carrying.type] = playerData.carrying;
 				playerData.carrying = holdableBuilder('air');
 			}
+			return;
 		}
 
 		return;
@@ -63,8 +62,6 @@
 			}
 		}
 	};
-
-	let Holding = $derived(holdableModels[kitchenItems[id].holding.type]);
 </script>
 
 <T.Group>

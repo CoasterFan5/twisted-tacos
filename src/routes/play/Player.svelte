@@ -34,7 +34,7 @@
 			type: 'player'
 		}}
 	>
-		<Collider shape="cylinder" args={[10, 0.5]}>
+		<Collider shape="cylinder" args={[10, 0.4]}>
 			<T.Group scale={[1.5, 2, 1.5]} position={[0, -0.5, 0]}>
 				<GLTF url="/assets/arcade/Models/GLB/character-employee.glb" />
 			</T.Group>

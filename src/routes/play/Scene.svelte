@@ -4,6 +4,7 @@
 	import { keyTick } from '$lib/keyManager';
 	import { newSpeed, playerSpeed, realPlayerSpeed } from '$lib/sharedState.svelte';
 	import Level from '$lib/components/Level.svelte';
+	import { Debug } from '@threlte/rapier';
 
 	useTask((timeDiff) => {
 		newSpeed.setX(-playerSpeed.x * 0.1);
@@ -33,3 +34,5 @@
 <Level />
 
 <Player />
+
+<Debug />

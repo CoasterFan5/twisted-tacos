@@ -30,13 +30,13 @@ export const cursorPos = {
 type Id = string;
 
 export const kitchenItems: Record<Id, ApplianceData> = $state({
-	a: applianceBuilder.fridge({
+	a: applianceBuilder.counter({
 		position: new Vector2(4, 4),
-		item: holdableBuilder('meat')
+		holding: holdableBuilder('tacoShell')
 	}),
 	b: applianceBuilder.counter({
 		position: new Vector2(4, 3),
-		holding: holdableBuilder('air')
+		holding: holdableBuilder('tacoShell')
 	}),
 	c: applianceBuilder.counter({
 		position: new Vector2(4, 2),
@@ -56,12 +56,13 @@ export const kitchenItems: Record<Id, ApplianceData> = $state({
 	g: applianceBuilder.trashCan({
 		position: new Vector2(4, -2)
 	}),
-	h: applianceBuilder.tomatoes({
-		position: new Vector2(4, -3)
+	h: applianceBuilder.plateDispenser({
+		position: new Vector2(4, -3),
+		stock: 5
 	}),
-	i: applianceBuilder.plateDispenser({
-		position: new Vector2(4, -4),
-		stock: 3
+
+	j: applianceBuilder.spinner({
+		position: new Vector2(0, -4)
 	})
 });
 

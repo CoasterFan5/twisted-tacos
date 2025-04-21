@@ -2,6 +2,7 @@
 	import type { CarryableData } from '$lib/types/Carryable';
 	import { T } from '@threlte/core';
 	import { holdableModels } from './holdableItems';
+	import TacoRenderer from './TacoRenderer.svelte';
 
 	const {
 		carryable
@@ -14,6 +15,12 @@
 
 <T.Group>
 	{#if BaseItem}
-		<BaseItem></BaseItem>
+		{#if carryable.type == 'tacoShell'}
+			<TacoRenderer tacoData={carryable} />
+		{:else}
+			<BaseItem></BaseItem>{/if}
+	{/if}
+	{#if carryable.children.tacoShell}
+		<TacoRenderer tacoData={carryable.children.tacoShell} />
 	{/if}
 </T.Group>

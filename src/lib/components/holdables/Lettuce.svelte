@@ -26,7 +26,7 @@ Command: npx @threlte/gltf@3.0.1 static/assets/food/Models/GLB/cabbage.glb
 	const gltf = useGltf('/assets/food/Models/GLB/cabbage.glb');
 </script>
 
-<T.Group bind:ref dispose={false} {...props}>
+<T.Group bind:ref dispose={false} {...props} scale={1.5}>
 	{#await gltf}
 		{@render fallback?.()}
 	{:then gltf}
