@@ -1,8 +1,6 @@
 <script lang="ts">
 	import { T } from '@threlte/core';
 	import TacoShell from './TacoShell.svelte';
-	import { Group } from 'three';
-	import Meat from './Meat.svelte';
 	import CookedMeat from './CookedMeat.svelte';
 	import type { CarryableData } from '$lib/types/Carryable';
 	import SlicedTomato from './SlicedTomato.svelte';

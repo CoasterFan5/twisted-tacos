@@ -1,0 +1,27 @@
+on: ['push']
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container: node:20.9.0
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '18.x'
+      - uses: pnpm/action-setup@v3
+        with:
+          version: 8
+      - name: Install dependencies
+        run: pnpm install
+      - name: Copy assets
+        run: pnpm run copy
+      - name: Build page
+        run: pnpm run build
+      - uses: yeslayla/butler-publish-itchio-action@master
+        env:
+          BUTLER_CREDENTIALS: ${{ secrets.BUTLER_CREDENTIALS }}
+          CHANNEL: HTML
+          ITCH_GAME: luckyTacos
+          ITCH_USER: coasterfan5
+          PACKAGE: build

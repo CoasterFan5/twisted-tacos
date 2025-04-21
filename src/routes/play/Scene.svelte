@@ -2,7 +2,13 @@
 	import { T, useTask } from '@threlte/core';
 	import Player from './Player.svelte';
 	import { keyTick } from '$lib/keyManager';
-	import { newSpeed, orders, playerSpeed, realPlayerSpeed } from '$lib/sharedState.svelte';
+	import {
+		newSpeed,
+		orders,
+		playerData,
+		playerSpeed,
+		realPlayerSpeed
+	} from '$lib/sharedState.svelte';
 	import Level from '$lib/components/Level.svelte';
 	import { Debug } from '@threlte/rapier';
 	import { getRandomTacoOrder } from '$lib/tacos/getRandomOrder';
@@ -30,6 +36,7 @@
 			});
 		}
 		timeSinceLastTaco += timeDiff;
+		playerData.timeInDay += timeDiff;
 	});
 </script>
 
@@ -46,5 +53,3 @@
 <Level />
 
 <Player />
-
-<Debug />

@@ -77,7 +77,11 @@ export const kitchenItems: Record<Id, ApplianceData> = $state({
 export const playerData: {
 	carrying: CarryableData;
 	balance: number;
+	timeInDay: number;
+	dayNumber: number;
 } = $state({
 	carrying: holdableBuilder('air'),
-	balance: 10
+	balance: 10,
+	timeInDay: 0,
+	dayNumber: 1
 });

@@ -1,10 +1,14 @@
 <script>
 	import { playerData } from '$lib/sharedState.svelte';
+	import { days } from '../days/dayList';
+
+	const dayInfo = $derived(days[playerData.dayNumber]);
 </script>
 
 <div class="dayInfo">
-	<h2>Day 1</h2>
-	<p>Due Today: $10</p>
+	<h2>Day {playerData.dayNumber.toFixed(0)}</h2>
+	<p>Ends in: {(dayInfo.minutes * 60 - playerData.timeInDay).toFixed(0)}s</p>
+	<p>Due Today: {dayInfo.requiredMoney}</p>
 	<p>Balance: ${playerData.balance.toLocaleString('en-US')}</p>
 </div>
 
