@@ -9,6 +9,7 @@ Play on CoasterFan5.com: https://tacos.coasterfan5.com
 ## To Do (48 hours left btw)
 
 - Day system
+- Tutorial
 - New assets
 - Sounds???
 - Build system???

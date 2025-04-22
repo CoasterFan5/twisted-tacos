@@ -7,7 +7,8 @@
 	<h2>Created By</h2>
 	<div class="creditText">Dylan Myers</div>
 	<h2>Tested By</h2>
-	<div class="creditText">Dylan Myers</div>
+	<div class="creditText">Jaqkyre Carter</div>
+	<div class="creditText">Jaida Hewitt</div>
 	<h2>Assets</h2>
 	<div class="creditText">Kenny.nl</div>
 	<a class="button" href="/">Back</a>
