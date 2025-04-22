@@ -35,6 +35,8 @@
 			thisPlateDispenser.stock = Math.round(thisPlateDispenser.stock + 1);
 		}
 	};
+
+	let active = $state(false);
 </script>
 
 <T.Group>
@@ -42,14 +44,22 @@
 		oncollisionenter={(e) => {
 			if ((e.targetRigidBody?.userData as RigidBodyUserData).name == 'player') {
 				registerEListener(id, getPlaceItem);
+				active = true;
 			}
 		}}
 		oncollisionexit={(e) => {
 			if ((e.targetRigidBody?.userData as RigidBodyUserData).name == 'player') {
 				unregisterEListener(id);
+				active = false;
 			}
 		}}
 	>
+		{#if active}
+			<T.Mesh>
+				<T.BoxGeometry args={[1.01, 1.01, 1.01]} />
+				<T.MeshBasicMaterial opacity={0.5} transparent={true} />
+			</T.Mesh>
+		{/if}
 		<CounterBase />
 		{#each { length: thisPlateDispenser.stock }, i}
 			<T.Group position={[0, i * 0.1 + 0.5, 0]}>

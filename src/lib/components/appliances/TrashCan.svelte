@@ -1,11 +1,10 @@
 <script lang="ts">
 	import { type RigidBodyUserData } from '$lib/types/RigidBodyUserData';
 	import { T } from '@threlte/core';
-	import { AutoColliders, Collider } from '@threlte/rapier';
+	import { Collider } from '@threlte/rapier';
 	import { playerData } from '$lib/sharedState.svelte';
 	import { registerEListener, unregisterEListener } from '$lib/keyManager';
 	import { holdableBuilder } from '../holdables/holdableBuilder';
-	import { Shape } from '@dimforge/rapier3d-compat';
 
 	let lastEvent: DOMHighResTimeStamp = 0;
 
@@ -14,6 +13,8 @@
 	}: {
 		id: string;
 	} = $props();
+
+	let active = $state(false);
 
 	const placeItem = () => {
 		const n = performance.now();
@@ -38,11 +39,13 @@
 		oncollisionenter={(e) => {
 			if ((e.targetRigidBody?.userData as RigidBodyUserData).name == 'player') {
 				registerEListener(id, placeItem);
+				active = true;
 			}
 		}}
 		oncollisionexit={(e) => {
 			if ((e.targetRigidBody?.userData as RigidBodyUserData).name == 'player') {
 				unregisterEListener(id);
+				active = false;
 			}
 		}}
 	>
@@ -50,6 +53,12 @@
 			<T.CylinderGeometry args={[0.45, 0.4, 0.75]} />
 			<T.MeshBasicMaterial color="gray" />
 		</T.Mesh>
+		{#if active}
+			<T.Mesh>
+				<T.CylinderGeometry args={[0.46, 0.41, 0.77]} />
+				<T.MeshBasicMaterial color="white" opacity={0.5} transparent={true} />
+			</T.Mesh>
+		{/if}
 		<T.Mesh>
 			<T.CylinderGeometry args={[0.4, 0.3, 0.76]} />
 			<T.MeshBasicMaterial color="black" />

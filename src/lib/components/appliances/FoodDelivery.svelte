@@ -75,6 +75,8 @@
 			return;
 		}
 	};
+
+	let active = $state(false);
 </script>
 
 <Collider
@@ -83,11 +85,13 @@
 	oncollisionenter={(e) => {
 		if ((e.targetRigidBody?.userData as RigidBodyUserData).name == 'player') {
 			registerEListener(id, placeFood);
+			active = true;
 		}
 	}}
 	oncollisionexit={(e) => {
 		if ((e.targetRigidBody?.userData as RigidBodyUserData).name == 'player') {
 			unregisterEListener(id);
+			active = false;
 		}
 	}}
 >
@@ -101,5 +105,10 @@
 		<T.Group position={[0, 0, 0]} rotation={[0, Math.PI / 2, 0]}>
 			<Conveyor />
 		</T.Group>
+		{#if active}
+			<T.Mesh position={[0, 0.25, 0]}>
+				<T.BoxGeometry args={[1.01, 0.5, 1.01]} />
+				<T.MeshBasicMaterial color="white" opacity={0.5} transparent={true} />
+			</T.Mesh>{/if}
 	</T.Group>
 </Collider>

@@ -17,6 +17,8 @@
 		id: string;
 	} = $props();
 
+	let active = $state(false);
+
 	const thisStove = $derived(kitchenItems[id]);
 
 	let lastEvent: DOMHighResTimeStamp = 0;
@@ -69,15 +71,23 @@
 		oncollisionenter={(e) => {
 			if ((e.targetRigidBody?.userData as RigidBodyUserData).name == 'player') {
 				registerEListener(id, getPlaceItem);
+				active = true;
 			}
 		}}
 		oncollisionexit={(e) => {
 			if ((e.targetRigidBody?.userData as RigidBodyUserData).name == 'player') {
 				unregisterEListener(id);
+				active = false;
 			}
 		}}
 	>
-		<T.Group>
+		<T.Group
+			>{#if active}
+				<T.Mesh>
+					<T.BoxGeometry args={[1.01, 1.01, 1.01]} />
+					<T.MeshBasicMaterial opacity={0.5} transparent={true} />
+				</T.Mesh>
+			{/if}
 			<CounterBase />
 			<T.Group position={[0, 0.55, 0]}>
 				<HoldingModel />

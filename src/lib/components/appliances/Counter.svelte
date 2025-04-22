@@ -64,6 +64,8 @@
 		return;
 	};
 
+	let active = $state(false);
+
 	const interact = (timeDiff: number) => {
 		const interactionDetails = counterInteractables[thisCounter.holding.type];
 		if (interactionDetails) {
@@ -78,12 +80,20 @@
 </script>
 
 <T.Group>
+	{#if active}
+		<T.Mesh>
+			<T.BoxGeometry args={[1.01, 1.01, 1.01]} />
+			<T.MeshBasicMaterial opacity={0.5} transparent={true} />
+		</T.Mesh>
+	{/if}
+
 	<AutoColliders
 		oncollisionenter={(e) => {
 			if ((e.targetRigidBody?.userData as RigidBodyUserData).name == 'player') {
 				registerEListener(id, getPlaceItem);
 				registerInteractListener(id, interact);
 				interactCompletion = 0;
+				active = true;
 			}
 		}}
 		oncollisionexit={(e) => {
@@ -91,6 +101,7 @@
 				unregisterEListener(id);
 				unRegisterInteractListener(id);
 				interactCompletion = 0;
+				active = false;
 			}
 		}}
 	>

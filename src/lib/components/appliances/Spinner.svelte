@@ -60,6 +60,8 @@
 		pos = 0;
 		spinVelocity = 25 + Math.random() * 10;
 	};
+
+	let active = $state(false);
 </script>
 
 <T.Group position={[-0.5, 0, 0.5]}>
@@ -70,15 +72,23 @@
 			if ((e.targetRigidBody?.userData as RigidBodyUserData).name == 'player') {
 				registerInteractListener(id, spinnnnn);
 				registerEListener(id, pickup);
+				active = true;
 			}
 		}}
 		oncollisionexit={(e) => {
 			if ((e.targetRigidBody?.userData as RigidBodyUserData).name == 'player') {
 				unRegisterInteractListener(id);
 				unregisterEListener(id);
+				active = false;
 			}
 		}}
 	>
+		{#if active}
+			<T.Mesh position={[0, -0.21, 0]}>
+				<T.CylinderGeometry args={[1.01, 1.01, 0.41]} />
+				<T.MeshBasicMaterial opacity={0.5} transparent={true} />
+			</T.Mesh>
+		{/if}
 		<T.Group rotation={[0, Math.PI / 6, 0]}>
 			<T.Mesh position={[0, -0.21, 0]}>
 				<T.CylinderGeometry args={[1, 1, 0.4]} />
