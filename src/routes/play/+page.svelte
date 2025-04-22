@@ -11,10 +11,6 @@
 <svelte:body onkeydown={registerActiveKey} onkeyup={removeActiveKey} />
 
 <div class="wrap">
-	<span class="a">
-		Carrying {JSON.stringify(playerData.carrying)}
-	</span>
-
 	<Overlay />
 	<Canvas autoRender={true} renderMode="always">
 		<World>
@@ -33,14 +29,5 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
-	}
-	.a {
-		position: fixed;
-		z-index: 1000;
-		color: white;
-		padding: 1rem;
-		background: rgba(0, 0, 0, 0.9);
-		top: 0px;
-		right: 0px;
 	}
 </style>

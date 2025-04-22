@@ -72,3 +72,6 @@
 <Level />
 
 <Player />
+
+<style lang="scss">
+</style>

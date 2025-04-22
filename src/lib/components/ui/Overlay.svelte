@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { orders } from '$lib/sharedState.svelte';
 	import DayInfo from './DayInfo.svelte';
+	import Holding from './Holding.svelte';
 	import OrderInfo from './OrderInfo.svelte';
 	import Tutorial from './Tutorial.svelte';
 
@@ -10,6 +11,8 @@
 		tutorialMode?: boolean;
 	} = $props();
 </script>
+
+<Holding />
 
 <div class="overlay">
 	<div class="left">
