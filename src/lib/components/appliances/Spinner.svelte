@@ -20,7 +20,7 @@
 		'tomato',
 		'lettuce',
 		'cheese',
-		'lettuce'
+		'onion'
 	];
 
 	const {

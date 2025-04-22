@@ -3,7 +3,8 @@ export const ingredients = [
 	'slicedTomato',
 	'lettuceSlice',
 	'tacoShell',
-	'cutCheese'
+	'cutCheese',
+	'cutOnion'
 ] as const;
 export const carryable = [
 	'meat',
@@ -13,6 +14,7 @@ export const carryable = [
 	'tomato',
 	'lettuce',
 	'cheese',
+	'onion',
 	...ingredients
 ] as const;
 

@@ -24,5 +24,9 @@ export const counterInteractables: Partial<
 	cheese: {
 		interactTime: 1_500,
 		result: holdableBuilder('cutCheese')
+	},
+	onion: {
+		interactTime: 1_500,
+		result: holdableBuilder('cutOnion')
 	}
 };
