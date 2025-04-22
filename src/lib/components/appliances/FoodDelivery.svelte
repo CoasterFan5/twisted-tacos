@@ -72,6 +72,10 @@
 			playerData.balance = Math.floor(playerData.balance + 5 + Math.random() * 5);
 			console.info('Order matched!');
 			orders.splice(index, 1);
+			playerData.dishesServed += 1;
+			if (playerData.balance > playerData.highScore) {
+				playerData.highScore = playerData.balance;
+			}
 			return;
 		}
 	};

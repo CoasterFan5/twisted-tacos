@@ -30,7 +30,7 @@
 
 	kitchenData.data = kitch;
 
-	let timeSinceLastTaco = 0;
+	let timeSinceLastTaco = 10;
 
 	useTask((timeDiff) => {
 		newSpeed.setX(-playerSpeed.x * 0.1);
@@ -45,7 +45,7 @@
 		realPlayerSpeed.y = playerSpeed.y * speedConstant;
 		realPlayerSpeed.z = playerSpeed.z * speedConstant;
 
-		if (timeSinceLastTaco > 1 && orders.length < 4) {
+		if (timeSinceLastTaco > 10 && orders.length < 4) {
 			timeSinceLastTaco = 0;
 			orders.push({
 				id: Math.random(),

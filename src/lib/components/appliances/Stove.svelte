@@ -35,6 +35,9 @@
 			if (cookingProgress > 1) {
 				cookingProgress = 0;
 				thisStove.holding = cookData.result;
+				if (thisStove.holding.type == 'burntMeat') {
+					playerData.meatBurn += 1;
+				}
 			}
 		}
 	});

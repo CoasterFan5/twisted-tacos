@@ -1,5 +1,4 @@
 import { newSpeed, playerData, tutorialData } from './sharedState.svelte';
-import actions from '$lib/components/PlayerModel.svelte';
 
 const activeKeys: { [key: string]: boolean } = {};
 const speedFactor = 10;
@@ -71,7 +70,7 @@ const keyEvents: {
 	d: (ts) => {
 		newSpeed.z += speedFactor * ts;
 	},
-	ArrowRight: (ts) => {
+	ArrowRight: () => {
 		if (tutorialData.maxAllowedStage > tutorialData.stage) {
 			tutorialData.stage = Math.round(tutorialData.stage + 1);
 		}

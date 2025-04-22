@@ -1,6 +1,5 @@
-import { Vector2, Vector3 } from 'three';
+import { Vector3 } from 'three';
 import type { CarryableData } from '$lib/types/Carryable';
-import { applianceBuilder } from '$lib/components/appliances/applianceBuilder';
 import { holdableBuilder } from './components/holdables/holdableBuilder';
 import type { Taco } from './tacos/types';
 import type { KitchenLayout } from './types/KitchenLayout';
@@ -47,12 +46,18 @@ export const tutorialData = $state({
 export const playerData: {
 	carrying: CarryableData;
 	balance: number;
+	highScore: number;
+	meatBurn: number;
+	dishesServed: number;
 	timeInDay: number;
 	dayNumber: number;
 	animationState: 'idle' | 'walk' | 'interact-left' | 'interact-right' | 'holding-right';
 } = $state({
 	carrying: holdableBuilder('air'),
-	balance: 10,
+	balance: 0,
+	highScore: 0,
+	meatBurn: 0,
+	dishesServed: 0,
 	timeInDay: 0,
 	dayNumber: 1,
 	animationState: 'idle'

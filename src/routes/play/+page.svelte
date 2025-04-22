@@ -6,6 +6,11 @@
 	import { playerData } from '$lib/sharedState.svelte';
 	import Overlay from '$lib/components/ui/Overlay.svelte';
 	import { kitchenLayout } from './kitchenLayout';
+
+	$effect(() => {
+		const highScore = parseInt(localStorage.getItem('highScore') || '0');
+		playerData.highScore = highScore;
+	});
 </script>
 
 <svelte:body onkeydown={registerActiveKey} onkeyup={removeActiveKey} />
