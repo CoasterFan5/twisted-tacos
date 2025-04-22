@@ -4,7 +4,7 @@ Command: npx @threlte/gltf@3.0.1 static/assets/arcade/Models/GLB/character-emplo
 -->
 
 <script lang="ts">
-	import { playerSpeed, realPlayerSpeed } from '$lib/sharedState.svelte';
+	import { playerData } from '$lib/sharedState.svelte';
 	/* eslint svelte/require-store-reactive-access: "off" */
 	import { T } from '@threlte/core';
 	import { useGltf, useGltfAnimations } from '@threlte/extras';
@@ -30,14 +30,30 @@ Command: npx @threlte/gltf@3.0.1 static/assets/arcade/Models/GLB/character-emplo
 
 	export const { actions, mixer } = useGltfAnimations(gltf, ref);
 
+	let currentActionKey = 'idle';
+
 	$effect(() => {
-		if (Math.abs(realPlayerSpeed.x) + Math.abs(realPlayerSpeed.x) > 0.1) {
-			$actions?.['walk']?.play();
-		} else {
-			$actions?.['walk']?.stop();
-			$actions?.['idle']?.play();
-		}
+		// This effect acts like an init default pose
+		$actions?.['idle']?.play();
 	});
+
+	$effect(() => {
+		transitionTo(playerData.animationState, 0.3);
+	});
+
+	function transitionTo(actionKey: string, duration = 1) {
+		const currentAction = $actions[currentActionKey];
+		const nextAction = $actions[actionKey];
+		if (!nextAction || currentAction === nextAction) return;
+		// Function inspired by: https://github.com/mrdoob/three.js/blob/master/examples/webgl_animation_skinning_blending.html
+		nextAction.enabled = true;
+		if (currentAction) {
+			currentAction.crossFadeTo(nextAction, duration, true);
+		}
+		// Not sure why I need this but the source code does not
+		nextAction.play();
+		currentActionKey = actionKey;
+	}
 </script>
 
 <T is={ref} dispose={false} {...props}>

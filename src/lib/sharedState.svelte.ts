@@ -49,9 +49,11 @@ export const playerData: {
 	balance: number;
 	timeInDay: number;
 	dayNumber: number;
+	animationState: 'idle' | 'walk' | 'interact-left' | 'interact-right';
 } = $state({
 	carrying: holdableBuilder('air'),
 	balance: 10,
 	timeInDay: 0,
-	dayNumber: 1
+	dayNumber: 1,
+	animationState: 'idle'
 });

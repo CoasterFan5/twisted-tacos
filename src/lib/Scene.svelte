@@ -14,6 +14,14 @@
 	import { getRandomTacoOrder } from '$lib/tacos/getRandomOrder';
 	import type { KitchenLayout } from './types/KitchenLayout';
 
+	$effect(() => {
+		if (Math.abs(realPlayerSpeed.x) + Math.abs(realPlayerSpeed.z) > 0.1) {
+			playerData.animationState = 'walk';
+		} else {
+			playerData.animationState = 'idle';
+		}
+	});
+
 	export const {
 		kitch
 	}: {

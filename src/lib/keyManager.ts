@@ -1,4 +1,5 @@
-import { newSpeed, tutorialData } from './sharedState.svelte';
+import { newSpeed, playerData, tutorialData } from './sharedState.svelte';
+import actions from '$lib/components/PlayerModel.svelte';
 
 const activeKeys: { [key: string]: boolean } = {};
 const speedFactor = 10;
@@ -76,11 +77,13 @@ const keyEvents: {
 		}
 	},
 	e: () => {
+		playerData.animationState = 'interact-right';
 		for (const i in eListeners) {
 			eListeners[i].callback();
 		}
 	},
 	q: (ts) => {
+		playerData.animationState = 'interact-left';
 		for (const i in interactListeners) {
 			interactListeners[i].callback(ts);
 		}
