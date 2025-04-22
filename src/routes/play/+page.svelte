@@ -6,10 +6,11 @@
 	import { playerData } from '$lib/sharedState.svelte';
 	import Overlay from '$lib/components/ui/Overlay.svelte';
 	import { kitchenLayout } from './kitchenLayout';
+	import { getGameStats } from '$lib/components/gameStats';
 
 	$effect(() => {
-		const highScore = parseInt(localStorage.getItem('highScore') || '0');
-		playerData.highScore = highScore;
+		const gs = getGameStats();
+		playerData.highScore = gs.highScore;
 	});
 </script>
 
