@@ -64,13 +64,19 @@ export const kitchenItems: Record<Id, ApplianceData> = $state({
 	}),
 	h: applianceBuilder.plateDispenser({
 		position: new Vector2(4, -3),
-		stock: 5
+		stock: 10
 	}),
 	i: applianceBuilder.foodDelivery({
 		position: new Vector2(2, -5)
 	}),
 	j: applianceBuilder.spinner({
 		position: new Vector2(0, -5)
+	}),
+	k: applianceBuilder.spinner({
+		position: new Vector2(-2, -5)
+	}),
+	l: applianceBuilder.spinner({
+		position: new Vector2(-4, -5)
 	})
 });
 
