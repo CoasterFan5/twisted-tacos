@@ -13,6 +13,7 @@
 	import { counterInteractables } from '$lib/components/counterInteractables';
 	import { holdableBuilder } from '../holdables/holdableBuilder';
 	import HoldableRender from '../holdables/HoldableRender.svelte';
+	import CounterBase from './CounterBase.svelte';
 
 	const {
 		id
@@ -91,14 +92,7 @@
 			}
 		}}
 	>
-		<T.Mesh scale={[1, 1, 1]}>
-			<T.BoxGeometry args={[1, 0.99, 1]} />
-			<T.MeshBasicMaterial color="#d3a66a" />
-		</T.Mesh>
-		<T.Mesh position={[0, 0.45, 0]}>
-			<T.BoxGeometry args={[1, 0.1, 1]} />
-			<T.MeshBasicMaterial color="#864d00" />
-		</T.Mesh>
+		<CounterBase />
 		<T.Group position={[0, 0.5, 0]}>
 			<HoldableRender carryable={thisCounter.holding} />
 		</T.Group>

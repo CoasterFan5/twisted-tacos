@@ -6,6 +6,7 @@
 	import { registerEListener, unregisterEListener } from '$lib/keyManager';
 	import Plate from '../holdables/Plate.svelte';
 	import { holdableBuilder } from '../holdables/holdableBuilder';
+	import CounterBase from './CounterBase.svelte';
 
 	const {
 		id
@@ -47,10 +48,7 @@
 			}
 		}}
 	>
-		<T.Mesh>
-			<T.BoxGeometry args={[1, 1, 1]} />
-			<T.MeshBasicMaterial color="purple" />
-		</T.Mesh>
+		<CounterBase />
 		{#each { length: thisPlateDispenser.stock }, i}
 			<T.Group position={[0, i * 0.1 + 0.5, 0]}>
 				<Plate />
