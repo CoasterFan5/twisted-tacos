@@ -77,6 +77,48 @@ export const kitchenItems: Record<Id, ApplianceData> = $state({
 	}),
 	l: applianceBuilder.spinner({
 		position: new Vector2(-4, -5)
+	}),
+	m: applianceBuilder.counter({
+		position: new Vector2(1, 3),
+		holding: holdableBuilder('air')
+	}),
+	n: applianceBuilder.counter({
+		position: new Vector2(0, 3),
+		holding: holdableBuilder('air')
+	}),
+	o: applianceBuilder.counter({
+		position: new Vector2(-1, 3),
+		holding: holdableBuilder('air')
+	}),
+	p: applianceBuilder.counter({
+		position: new Vector2(-2, 3),
+		holding: holdableBuilder('air')
+	}),
+	q: applianceBuilder.counter({
+		position: new Vector2(-3, 3),
+		holding: holdableBuilder('air')
+	}),
+	r: applianceBuilder.counter({
+		position: new Vector2(-3, 2),
+		holding: holdableBuilder('air')
+	}),
+	s: applianceBuilder.counter({
+		position: new Vector2(-2, 2),
+		holding: holdableBuilder('air')
+	}),
+	t: applianceBuilder.stove({
+		position: new Vector2(-2, 2)
+	}),
+	u: applianceBuilder.stove({
+		position: new Vector2(-1, 2)
+	}),
+	v: applianceBuilder.counter({
+		position: new Vector2(0, 2),
+		holding: holdableBuilder('air')
+	}),
+	w: applianceBuilder.counter({
+		position: new Vector2(1, 2),
+		holding: holdableBuilder('air')
 	})
 });
 
