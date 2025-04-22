@@ -8,8 +8,7 @@ Play on CoasterFan5.com: https://tacos.coasterfan5.com
 
 ## To Do (4 hours left btw)
 
-- Game Part of the game
-- Sounds???
+- Sounds??? <- Not getting done
 
 ## Warning
 
