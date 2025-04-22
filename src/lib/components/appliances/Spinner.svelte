@@ -40,11 +40,9 @@
 		if (spinVelocity == 0) {
 			const dist = pos;
 			const thisSpinDist = dist % (2 * Math.PI);
-			const quad = thisSpinDist / (Math.PI / 3);
 			const rawVisualIndex = Math.floor((-thisSpinDist / (Math.PI / 3)) % 6);
 			const visualIndex = rawVisualIndex < 0 ? rawVisualIndex + 6 : rawVisualIndex;
 			const visualSixth = visualIndex + 1;
-			console.log(dist, quad, visualSixth);
 			spunIngredient = spinnerIgredients[visualSixth - 1];
 		}
 	});

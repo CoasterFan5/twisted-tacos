@@ -32,9 +32,10 @@
 
 		// loop through each order and find the first match
 		for (const [index, o] of orders.entries()) {
-			console.log(o);
+			console.log($state.snapshot(o));
+			console.log($state.snapshot(tacoChild));
 			//tomatoe
-			const tacoHasTomatoe = tacoChild.children.tomato != undefined;
+			const tacoHasTomatoe = tacoChild.children.slicedTomato != undefined;
 			const orderHasTomato = o.req.slicedTomato;
 			if (orderHasTomato != tacoHasTomatoe) {
 				console.log('No Tomato Match');
@@ -43,7 +44,7 @@
 
 			//lettuce
 
-			const tacoHasLettuce = tacoChild.children.lettuce != undefined;
+			const tacoHasLettuce = tacoChild.children.lettuceSlice != undefined;
 			const orderHasLettuce = o.req.lettuceSlice;
 			if (orderHasLettuce != tacoHasLettuce) {
 				console.log('No Lettuce Match');
@@ -51,7 +52,7 @@
 			}
 
 			// cheese
-			const tacoHasCheese = tacoChild.children.cheese != undefined;
+			const tacoHasCheese = tacoChild.children.cutCheese != undefined;
 			const orderHasCheese = o.req.cutCheese;
 
 			if (orderHasCheese != tacoHasCheese) {
@@ -60,7 +61,7 @@
 			}
 
 			// Onion
-			const tacoHasOnion = tacoChild.children.onion != undefined;
+			const tacoHasOnion = tacoChild.children.cutOnion != undefined;
 			const orderHasOnion = o.req.cutOnion;
 
 			if (orderHasOnion != tacoHasOnion) {

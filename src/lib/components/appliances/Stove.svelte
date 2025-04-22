@@ -7,6 +7,7 @@
 	import { holdableModels } from '$lib/components/holdables/holdableItems';
 	import { cookables } from '$lib/components/cookables';
 	import { holdableBuilder } from '../holdables/holdableBuilder';
+	import CounterBase from './CounterBase.svelte';
 
 	const {
 		id
@@ -74,12 +75,37 @@
 			}
 		}}
 	>
-		<T.Mesh>
-			<T.BoxGeometry args={[1, 1, 1]} />
-			<T.MeshBasicMaterial color="black" />
-		</T.Mesh>
-		<T.Group position={[0, 0.5, 0]}>
-			<HoldingModel />
+		<T.Group>
+			<CounterBase />
+			<T.Group position={[0, 0.55, 0]}>
+				<HoldingModel />
+			</T.Group>
+			<T.Group position={[0, 0.0, 0]}>
+				<T.Mesh position={[0, 0.01, 0]}>
+					<T.CylinderGeometry args={[0.4, 0.4, 1]} />
+					<T.MeshBasicMaterial color="white" />
+				</T.Mesh>
+				<T.Mesh position={[0, 0.02, 0]}>
+					<T.CylinderGeometry args={[0.35, 0.35, 1]} />
+					<T.MeshBasicMaterial color="gray" />
+				</T.Mesh>
+				<T.Mesh position={[0, 0.03, 0]}>
+					<T.CylinderGeometry args={[0.25, 0.25, 1]} />
+					<T.MeshBasicMaterial color="black" />
+				</T.Mesh>
+				<T.Mesh position={[0, 0.04, 0]}>
+					<T.CylinderGeometry args={[0.2, 0.2, 1]} />
+					<T.MeshBasicMaterial color="gray" />
+				</T.Mesh>
+				<T.Mesh position={[0, 0.05, 0]}>
+					<T.BoxGeometry args={[0.4, 1, 0.05]} />
+					<T.MeshBasicMaterial color="black" />
+				</T.Mesh>
+				<T.Mesh position={[0, 0.05, 0]} rotation={[0, Math.PI / 2, 0]}>
+					<T.BoxGeometry args={[0.4, 1, 0.05]} />
+					<T.MeshBasicMaterial color="black" />
+				</T.Mesh>
+			</T.Group>
 		</T.Group>
 	</AutoColliders>
 </T.Group>

@@ -9,20 +9,30 @@
 
 <svelte:body onkeydown={registerActiveKey} onkeyup={removeActiveKey} />
 
-<span class="a">
-	Carrying {JSON.stringify(playerData.carrying)}
-</span>
+<div class="wrap">
+	<span class="a">
+		Carrying {JSON.stringify(playerData.carrying)}
+	</span>
 
-<Overlay />
-<Canvas autoRender={true} renderMode="always">
-	<World>
-		<T.BoxHelper>
-			<Scene />
-		</T.BoxHelper>
-	</World>
-</Canvas>
+	<Overlay />
+	<Canvas autoRender={true} renderMode="always">
+		<World>
+			<T.BoxHelper>
+				<Scene />
+			</T.BoxHelper>
+		</World>
+	</Canvas>
+</div>
 
 <style>
+	.wrap {
+		height: 100vh;
+		width: 100%;
+		background: black;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
 	.a {
 		position: fixed;
 		z-index: 1000;
