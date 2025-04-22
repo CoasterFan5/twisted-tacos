@@ -17,7 +17,9 @@
 	const betterNames: Partial<Record<string, string>> = {
 		cookedMeat: 'Beef',
 		lettuceSlice: 'Lettuce',
-		slicedTomato: 'Tomato'
+		slicedTomato: 'Tomato',
+		cutCheese: 'Cheese',
+		cutOnion: 'Onion'
 	};
 </script>
 

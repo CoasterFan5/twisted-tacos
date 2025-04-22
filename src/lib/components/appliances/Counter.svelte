@@ -42,11 +42,18 @@
 		} else {
 			const thisAllowedChildren = allowedChildren[thisCounter.holding.type];
 			if (thisAllowedChildren && thisAllowedChildren[playerData.carrying.type]) {
+				if (thisCounter.holding.children[playerData.carrying.type]) {
+					return;
+				}
 				thisCounter.holding.children[playerData.carrying.type] = playerData.carrying;
 				playerData.carrying = holdableBuilder('air');
 			} else if (thisCounter.holding.type == 'plate' && thisCounter.holding.children.tacoShell) {
+				if (thisCounter.holding.children.tacoShell.children[playerData.carrying.type]) {
+					return;
+				}
 				const foundATaco = thisCounter.holding.children.tacoShell;
 				foundATaco.children[playerData.carrying.type] = playerData.carrying;
+				playerData.carrying = holdableBuilder('air');
 			}
 			return;
 		}

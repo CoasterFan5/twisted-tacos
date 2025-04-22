@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { T } from '@threlte/core';
+	import { T, useTask } from '@threlte/core';
 	import FloorTile from './FloorTile.svelte';
 	import { kitchenItems } from '$lib/sharedState.svelte';
 	import { AutoColliders } from '@threlte/rapier';

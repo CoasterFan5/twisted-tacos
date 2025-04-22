@@ -40,13 +40,15 @@
 	});
 </script>
 
-<T.PerspectiveCamera
-	makeDefault
-	position={[-10, 10, 0]}
-	oncreate={(ref) => {
-		ref.lookAt(0, 0, 0);
-	}}
-/>
+<T.Group>
+	<T.PerspectiveCamera
+		makeDefault
+		position={[-10, 10, 0]}
+		oncreate={(ref) => {
+			ref.lookAt(0, 0, 0);
+		}}
+	/>
+</T.Group>
 
 <T.AmbientLight color="white" intensity={1} />
 

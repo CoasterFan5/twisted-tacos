@@ -50,6 +50,24 @@
 				continue;
 			}
 
+			// cheese
+			const tacoHasCheese = tacoChild.children.cheese != undefined;
+			const orderHasCheese = o.req.cutCheese;
+
+			if (orderHasCheese != tacoHasCheese) {
+				console.log('No Cheese Match');
+				continue;
+			}
+
+			// Onion
+			const tacoHasOnion = tacoChild.children.onion != undefined;
+			const orderHasOnion = o.req.cutOnion;
+
+			if (orderHasOnion != tacoHasOnion) {
+				console.log('No Onion Match');
+				continue;
+			}
+
 			playerData.balance = Math.floor(playerData.balance + 5 + Math.random() * 5);
 			console.info('Order matched!');
 			orders.splice(index, 1);

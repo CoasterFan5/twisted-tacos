@@ -30,16 +30,18 @@ export const holdableModels: Partial<Record<Carryable, Component>> = {
 	cutOnion: CutOnion
 };
 
-type CarryingCapacity = Partial<Record<Carryable, number>>;
+type AllowCarry = Partial<Record<Carryable, boolean>>;
 
-export const allowedChildren: Partial<Record<Carryable, CarryingCapacity>> = {
+export const allowedChildren: Partial<Record<Carryable, AllowCarry>> = {
 	plate: {
-		tacoShell: 1
+		tacoShell: true
 	},
 	tacoShell: {
-		lettuceSlice: 1,
-		slicedTomato: 1,
-		cheese: 1,
-		cookedMeat: 1
+		lettuceSlice: true,
+		slicedTomato: true,
+		cheese: true,
+		cookedMeat: true,
+		cutCheese: true,
+		cutOnion: true
 	}
 };
