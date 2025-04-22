@@ -1,13 +1,15 @@
 <script lang="ts">
 	import { T, useTask } from '@threlte/core';
 	import { AutoColliders } from '@threlte/rapier';
-	import { kitchenItems, playerData } from '$lib/sharedState.svelte';
+	import { kitchenData, playerData } from '$lib/sharedState.svelte';
 	import { registerEListener, unregisterEListener } from '$lib/keyManager';
 	import type { RigidBodyUserData } from '$lib/types/RigidBodyUserData';
 	import { holdableModels } from '$lib/components/holdables/holdableItems';
 	import { cookables } from '$lib/components/cookables';
 	import { holdableBuilder } from '../holdables/holdableBuilder';
 	import CounterBase from './CounterBase.svelte';
+
+	const kitchenItems = $derived(kitchenData.data);
 
 	const {
 		id

@@ -6,10 +6,10 @@ It's also for [Madison Jam 2](https://itch.io/jam/madison-jam-2)
 Play on itch.io: https://coasterfan5.itch.io/lucky-tacos
 Play on CoasterFan5.com: https://tacos.coasterfan5.com
 
-## To Do (48 hours left btw)
+## To Do (8 hours left btw)
 
-- Day system
 - Tutorial
+- Day system
 - New assets
 - Sounds???
 - Build system???

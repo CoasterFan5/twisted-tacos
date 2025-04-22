@@ -1,4 +1,4 @@
-import { newSpeed } from './sharedState.svelte';
+import { newSpeed, tutorialData } from './sharedState.svelte';
 
 const activeKeys: { [key: string]: boolean } = {};
 const speedFactor = 10;
@@ -69,6 +69,11 @@ const keyEvents: {
 	},
 	d: (ts) => {
 		newSpeed.z += speedFactor * ts;
+	},
+	ArrowRight: (ts) => {
+		if (tutorialData.maxAllowedStage > tutorialData.stage) {
+			tutorialData.stage = Math.round(tutorialData.stage + 1);
+		}
 	},
 	e: () => {
 		for (const i in eListeners) {

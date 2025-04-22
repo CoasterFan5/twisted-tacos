@@ -2,7 +2,7 @@
 	import { type RigidBodyUserData } from '$lib/types/RigidBodyUserData';
 	import { T } from '@threlte/core';
 	import { AutoColliders } from '@threlte/rapier';
-	import { kitchenItems, playerData } from '$lib/sharedState.svelte';
+	import { kitchenData, playerData } from '$lib/sharedState.svelte';
 	import {
 		registerEListener,
 		registerInteractListener,
@@ -14,6 +14,8 @@
 	import { holdableBuilder } from '../holdables/holdableBuilder';
 	import HoldableRender from '../holdables/HoldableRender.svelte';
 	import CounterBase from './CounterBase.svelte';
+
+	const kitchenItems = $derived(kitchenData.data);
 
 	const {
 		id

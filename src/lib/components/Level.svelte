@@ -1,10 +1,13 @@
 <script lang="ts">
-	import { T, useTask } from '@threlte/core';
+	import { T } from '@threlte/core';
 	import FloorTile from './FloorTile.svelte';
-	import { kitchenItems } from '$lib/sharedState.svelte';
+
 	import { AutoColliders } from '@threlte/rapier';
 	import { Sky } from '@threlte/extras';
 	import { appliances } from './appliances/appliances';
+	import { kitchenData } from '$lib/sharedState.svelte';
+
+	const kitchenItems = $derived(kitchenData.data);
 
 	const tiles: {
 		id: number;
@@ -58,13 +61,15 @@
 			</T.Mesh>
 		</AutoColliders>
 	</T.Group>
-	<T.Group position={[0, 0.5, 0]}>
-		{#each Object.keys(kitchenItems) as t (t)}
-			{@const d = kitchenItems[t]}
-			{@const Comp = appliances[d.type]}
-			<T.Group position={[d.position.x, 0, d.position.y]}>
-				<Comp id={t} />
-			</T.Group>
-		{/each}
-	</T.Group>
+	{#key kitchenItems}
+		<T.Group position={[0, 0.5, 0]}>
+			{#each Object.keys(kitchenItems) as t (t)}
+				{@const d = kitchenItems[t]}
+				{@const Comp = appliances[d.type]}
+				<T.Group position={[d.position.x, 0, d.position.y]}>
+					<Comp id={t} />
+				</T.Group>
+			{/each}
+		</T.Group>
+	{/key}
 </T.Group>

@@ -3,6 +3,7 @@
 	import Player from './Player.svelte';
 	import { keyTick } from '$lib/keyManager';
 	import {
+		kitchenData,
 		newSpeed,
 		orders,
 		playerData,
@@ -10,8 +11,16 @@
 		realPlayerSpeed
 	} from '$lib/sharedState.svelte';
 	import Level from '$lib/components/Level.svelte';
-	import { Debug } from '@threlte/rapier';
 	import { getRandomTacoOrder } from '$lib/tacos/getRandomOrder';
+	import type { KitchenLayout } from './types/KitchenLayout';
+
+	export const {
+		kitch
+	}: {
+		kitch: KitchenLayout;
+	} = $props();
+
+	kitchenData.data = kitch;
 
 	let timeSinceLastTaco = 0;
 

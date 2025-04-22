@@ -1,14 +1,25 @@
-<script>
+<script lang="ts">
 	import { orders } from '$lib/sharedState.svelte';
 	import DayInfo from './DayInfo.svelte';
 	import OrderInfo from './OrderInfo.svelte';
+	import Tutorial from './Tutorial.svelte';
+
+	const {
+		tutorialMode
+	}: {
+		tutorialMode?: boolean;
+	} = $props();
 </script>
 
 <div class="overlay">
 	<div class="left">
-		<DayInfo />
-		{#each orders as order, i (order.id)}
-			<OrderInfo index={i} orderInfo={order} />{/each}
+		{#if !tutorialMode}
+			<DayInfo />
+			{#each orders as order, i (order.id)}
+				<OrderInfo index={i} orderInfo={order} />{/each}
+		{:else}
+			<Tutorial />
+		{/if}
 	</div>
 </div>
 

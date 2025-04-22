@@ -5,6 +5,7 @@
 <div class="wrap">
 	<h1>Lucky Tacos</h1>
 	<a class="button" href="/play">Play</a>
+	<a class="button" href="/tutorial">Tutorial</a>
 	<a class="button" href="/credits">Credits</a>
 </div>
 

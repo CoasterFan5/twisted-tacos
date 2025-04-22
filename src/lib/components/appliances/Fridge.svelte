@@ -2,8 +2,10 @@
 	import { type RigidBodyUserData } from '$lib/types/RigidBodyUserData';
 	import { T } from '@threlte/core';
 	import { AutoColliders } from '@threlte/rapier';
-	import { kitchenItems, playerData } from '$lib//sharedState.svelte';
+	import { kitchenData, playerData } from '$lib//sharedState.svelte';
 	import { registerEListener, unregisterEListener } from '$lib/keyManager';
+
+	const kitchenItems = $derived(kitchenData.data);
 
 	const {
 		id
