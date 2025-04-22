@@ -22,7 +22,7 @@
 	const thisStove = $derived(kitchenItems[id]);
 
 	let lastEvent: DOMHighResTimeStamp = 0;
-	let cookingProgress = 0; // When this gets to one we are done
+	let cookingProgress = $state(0); // When this gets to one we are done
 	let holding = $derived(thisStove.holding);
 	let HoldingModel = $derived(holdableModels[thisStove.holding.type]);
 
@@ -67,6 +67,12 @@
 </script>
 
 <T.Group>
+	<T.Group position={[0, 0.005, 0]}>
+		<T.Mesh>
+			<T.CylinderGeometry args={[0.5, 0.5, 1, 10, 10, false, 0, Math.PI * 2 * cookingProgress]} />
+			<T.MeshBasicMaterial color="green" />
+		</T.Mesh>
+	</T.Group>
 	<AutoColliders
 		oncollisionenter={(e) => {
 			if ((e.targetRigidBody?.userData as RigidBodyUserData).name == 'player') {

@@ -23,7 +23,7 @@
 		id: string;
 	} = $props();
 
-	let interactCompletion = 0;
+	let interactCompletion = $state(0);
 
 	const thisCounter = $derived(kitchenItems[id]);
 
@@ -74,6 +74,7 @@
 
 			if (interactCompletion >= 1) {
 				thisCounter.holding = interactionDetails.result;
+				interactCompletion = 0;
 			}
 		}
 	};
@@ -86,6 +87,15 @@
 			<T.MeshBasicMaterial opacity={0.5} transparent={true} />
 		</T.Mesh>
 	{/if}
+
+	<T.Group position={[0, 0.01, 0]}>
+		<T.Mesh>
+			<T.CylinderGeometry
+				args={[0.5, 0.5, 1, 50, 10, false, 0, Math.PI * 2 * interactCompletion]}
+			/>
+			<T.MeshBasicMaterial color="green" />
+		</T.Mesh>
+	</T.Group>
 
 	<AutoColliders
 		oncollisionenter={(e) => {
