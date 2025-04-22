@@ -3,16 +3,20 @@
 This is a cooking game, with a **twist** made with Svelte.
 It's also for [Madison Jam 2](https://itch.io/jam/madison-jam-2)
 
+Play on itch.io: https://coasterfan5.itch.io/lucky-tacos
+Play on CoasterFan5.com: https://tacos.coasterfan5.com
+
 ## To Do (48 hours left btw)
 
-- Add the ingreadient wheel
-- Add ingreadient groups on plates
-- Customer ordering
-- Serving orders
+- Day system
+- New assets
+- Sounds???
+- Build system???
 
 ## Warning
 
-This is a big repo because I put all the assets here. This is not a serious project but if you want to play it, head over to [tacos.coasterfan5.com](https://tacos.coasterfan5.com)
+This is a big repo because I put all the assets here.
+Don't try to contribute, this is not a real project.
 
 ## The big question?
 
