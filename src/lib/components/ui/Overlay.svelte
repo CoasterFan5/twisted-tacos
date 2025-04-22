@@ -34,5 +34,6 @@
 		overflow-y: auto;
 		-ms-overflow-style: none; /* Internet Explorer 10+ */
 		scrollbar-width: none; /* Firefox */
+		padding-bottom: 3rem;
 	}
 </style>

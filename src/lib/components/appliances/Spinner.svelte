@@ -19,7 +19,7 @@
 		'tacoShell',
 		'tomato',
 		'lettuce',
-		'lettuce',
+		'cheese',
 		'lettuce'
 	];
 

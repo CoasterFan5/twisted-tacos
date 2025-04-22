@@ -1,4 +1,10 @@
-export const ingredients = ['cookedMeat', 'slicedTomato', 'lettuceSlice', 'tacoShell'] as const;
+export const ingredients = [
+	'cookedMeat',
+	'slicedTomato',
+	'lettuceSlice',
+	'tacoShell',
+	'cutCheese'
+] as const;
 export const carryable = [
 	'meat',
 	'plate',
@@ -6,6 +12,7 @@ export const carryable = [
 	'burntMeat',
 	'tomato',
 	'lettuce',
+	'cheese',
 	...ingredients
 ] as const;
 

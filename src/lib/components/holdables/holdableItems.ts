@@ -9,6 +9,8 @@ import SlicedTomato from './SlicedTomato.svelte';
 import Lettuce from './Lettuce.svelte';
 import LettuceSlice from './LettuceSlice.svelte';
 import TacoShell from './TacoShell.svelte';
+import Cheese from './Cheese.svelte';
+import CutCheese from './CutCheese.svelte';
 
 export const holdableModels: Partial<Record<Carryable, Component>> = {
 	meat: Meat,
@@ -19,7 +21,9 @@ export const holdableModels: Partial<Record<Carryable, Component>> = {
 	slicedTomato: SlicedTomato,
 	lettuce: Lettuce,
 	lettuceSlice: LettuceSlice,
-	tacoShell: TacoShell
+	tacoShell: TacoShell,
+	cheese: Cheese,
+	cutCheese: CutCheese
 };
 
 type CarryingCapacity = Partial<Record<Carryable, number>>;
@@ -31,6 +35,7 @@ export const allowedChildren: Partial<Record<Carryable, CarryingCapacity>> = {
 	tacoShell: {
 		lettuceSlice: 1,
 		slicedTomato: 1,
+		cheese: 1,
 		cookedMeat: 1
 	}
 };
